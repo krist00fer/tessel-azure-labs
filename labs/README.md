@@ -6,12 +6,14 @@ All provided labs are about connecting the Tessel micro controller to Microsoft 
 -----
 In this lab, we will help you get your computer, your Tessel and your Microsoft Azure account all setup. After this lab is done you should have the tools you need installed on your computer, a connection to your Tessel and an active account on Microsoft Azure.
 
+[Calling a Custom REST API with Azure Mobile Services](010-tessel-mobile-services)
+----------------------------------------------------
+"With Mobile Services, it’s easy to rapidly build engaging cross-platform and native apps for iOS, Android, Windows or Mac, store app data in the cloud or on-premises, authenticate users, send push notifications, as well as add your custom backend logic in C# or Node.js."
+
+During this hands on lab you'll learn how to create your own REST API and host it in Microsoft Azure Mobile Services and then communicate with that service from your Tessel micro controller.
+
 Calling a Custom REST API with Azure WebSites
 ---------------------------------------------
-
-
-Calling a Custom REST API with Azure Mobile Services
-----------------------------------------------------
 
 
 Calling a Custom REST API hosted on an Azure VM running Dockers
