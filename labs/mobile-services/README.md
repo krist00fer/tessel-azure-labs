@@ -1,46 +1,61 @@
-(Name of lab)
-=============
-(Enter a short description of what the lab will go through here. Approximately 5-10 sentences.)
+Creating and Calling a Custom REST API with Azure Mobile Services
+=================================================================
+
+"With Mobile Services, it’s easy to rapidly build engaging cross-platform and native apps for iOS, Android, Windows or Mac, store app data in the cloud or on-premises, authenticate users, send push notifications, as well as add your custom backend logic in C# or Node.js."
+
+During this hands on lab you'll learn how to create your own REST API and host it in Microsoft Azure Mobile Services and communicate with that service from your Tessel microcontroller.
 
 Prerequisites
 -------------
 In order to successfully complete this lab you need to:
 
 * Have successfully setup your Azure Subscription, your development environment and your Tessel according to instructions outlined in the [Setup Lab](../_setup).
-* (Add other prerequisites here)
-* (If the lab uses features, tools or languages that are only available on certain operating systems make sure you specify them here, i.e. PowerShell, Visual Studio, C#, etc.)
-* (...)
 
 Instructions
 ------------
-(Describe the lab here. Divide the lab into logical parts in order for the participant to easily follow along. If possible, describe the steps in the lab using steps that are platform agnostic, i.e. it should work using whatever operating system you want. If possible use Azure-CLI to manage Windows Azure, but also explain how to use the portal if you feel it adds extra value or visibility. Remember that the portal(s) are changing faster than Azure-CLI, so the labs will be easier to maintain if we use Azure-CLI and since the Tessel's programming tools are used from the console, we might as well stick with it as much as possible. The preferred programming language on the server and client side should be JavaScript if possible in order to keep complexity of setup to a minimum.)
 
-### Part 1
-(Text in part one goes here)
+Azure Mobile Services provides you with an architecture and a service to host highly scalable rest services. Easily accessable from phones, tablets, web pages, computers and Tessel microcontrollers. You can create your own Mobile Service directly through the [portal](http://manage.windowsazure.com) or by using the Azure cross platform tools, Azure-CLI. In this lab we will mainly use the command line tools.
 
-### Part 2
-(Text in part two goes here)
+### Creating a new Azure Mobile Service
 
-* (Bullet one)
-* (Bullet two)
-  * (Bullet two point one)
-  * (Bullet two point two)
+Open a terminal/console Window (PowerShell Window will work just fine as well if you are using Windows) and invoke the following command to ask for help on how to create a new Mobile Service:
 
-#### Part 2.1
-(Text in part two point one goes here)
+	azure mobile create --help
 
-#### Part 2.2
-(Text in part two point two goes here)
+*Tip: You can always add --help to azure-cli commands in order to get help*
 
-#### Part 3
-(Text in part three goes here)
+Briefly make yourself familiar with the help page and then run the following command to get a list of locations where Mobile Serivces currently is available:
 
-	// Use comments in code only if code is otherwise confusing.
-	// We want the code to be as good and clean written that it
-	// is self-explanatory and doesn't need comments. Still don't
-	// be afraid to use comments if needed.
+	azure mobile locations
 
-	code.indent(tab); // Indent code with 4 spaces (or tab) to have it appear as code
+ Execute the following commande where you replace [servicename] [sqlAdminUsername] and [sqlAdminPassword] with values that you decide for yourself. Servicename must be globaly unique so make sure you come up with something unique and feel free to use another location if that takes you closer to your end users.
+
+	azure mobile create [servicename] [sqlAdminUsername] [sqlAdminPassword] --location 'North Europe'
+
+This will create your own instance of Azure Mobile Services in the datacenter of your choice. By default, if you don't specify anything else, we also tell Azure Mobile Serivces to build the service using JavaScript/Node.js and that fit us just fine since the Tessel is programmed using JavaScript. Make sure you remember your servicename, sqladminusername, sqladminpassword and your location for future use. 
+
+Let's create a really simple REST API named "random" that responds with a random number whenever you GET data from the corresponding URL. The following commands creates and updates the permissions for our service.
+
+	azure mobile api create --help
+	azure mobile api create [servicename] random --permissions get=public
+
+This creates a placeholder for us to upload/write our own JavaScript/Node.js code. By setting the --permissions flag to get=public, we open up the service for beeing accessed without any authentication using the HTTP GET Verb.
+
+For this lab, we have provided you with a simple implementation of the random service so you don't even have to write that one on your own. Have a look at the file [api/random.js](api/random.js) and familiarize yourself with what it does.
+
+Time to upload the implementation of our RESTful Service. Make sure you replace api/random.js with the actual path to the file if your current path isn't the root of this lab. **Note: api/random refers to the API we want to update and "-f api/random.js" points out the file that we should use to update the api with**
+
+	azure mobile script upload --help
+	azure mobile script upload [servicename] api/random -f api/random.js
+
+That's it! You have now created and hosted your RESTful Web Service in Azure Mobile Services and can call it by invoking a GET HTTP Request against http://[servicename].azure-mobile.net/api/random . One way of doing that is to enter that URL in your favorite browser and press enter. Each time you reload that page you should get a JSON Object back with a random value of the attribute "rnd". Execute the following commands:
+
+	azure mobile log --help
+	azure mobile log [servicename]
+
+You'll see a list of the last 10 logs that has been written from within your API.
+
+Optional: Browse to the "old" [Azure Portal at http://manage.windowsazure.com](http://manage.windowsazure.com) and explore the section for Mobile Services and see if you can find your newly created service there.
 
 Summary
 -------
