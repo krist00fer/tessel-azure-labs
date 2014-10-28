@@ -78,6 +78,16 @@ Follow the official install guidance to setup and connect your computer with you
 	npm install -g tessel
 	tessel update
 
+#### Setup Wifi on your Tessel
+
+Connecting your Tessel to a network is simple. While your Tessel is connected to your computer, run:
+
+	tessel wifi -n [network name] -p [password]
+
+... where network name is SSID of the network you want to connect to and password is the wpa2 password. The yellow light will blink while connecting and then turn constant yellow if connected. The Tessel will remember your network connection the next time you turn it on, so this might be a one time command. Execute the following command to retreive a list of networks and to whish you are connected:
+
+	tessel wifi -l
+
 ### Clone or download content of this GitHub repository (optional but recommended)
 
 The labs provided here uses a combination of text documentation and provided sample code. In order to have all documentation and all necessary sample files locally on your computer, we strongly recommend you to clone (using [Git](http://git-scm.com/)) or download all content in this repository locally on your computer.
