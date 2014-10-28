@@ -71,12 +71,18 @@ If everything succeeded you have now connected the current user to your Azure Su
 
 Azure-CLI will respond with a list of Azure subscriptions attached to the current user. Done!
 
-### Install Tessel
+### Setup your Tessel
 
-Follow the official install guidance to setup and connect your computer with your Tessel device. Since you already have installed Node.js, you don't need to do that again, but otherwise follow the instructions to install the tools and update your Tessel's Firmware. On Windows and OSX that is often as easy as:
+Follow the [official install guidance](http://start.tessel.io/) to setup and connect your computer with your Tessel device. Since you already have installed Node.js, you don't need to do that again, but otherwise follow the instructions to install the tools and update your Tessel's Firmware. On Windows and OSX that is often as easy as:
 
 	npm install -g tessel
 	tessel update
+
+#### Familiarize yourself with the Tessel
+
+All labs in this serie will contain and deploy code to your Tessel. Make sure you take some time to do at least the first official lab [Blinky](http://start.tessel.io/blinky) in order to deploy a simple program to you Tessel. The section about [usage](http://start.tessel.io/usage) is also really helpful. Otherwise execute the foolowing command to get more help:
+
+	tessel --help
 
 #### Setup Wifi on your Tessel
 
