@@ -78,6 +78,10 @@ Follow the official install guidance to setup and connect your computer with you
 	npm install -g tessel
 	tessel update
 
+### Clone or download content of this GitHub repository (optional but recommended)
+
+The labs provided here uses a combination of text documentation and provided sample code. In order to have all documentation and all necessary sample files locally on your computer, we strongly recommend you to clone (using [Git](http://git-scm.com/)) or download all content in this repository locally on your computer.
+
 Summary
 -------
 
