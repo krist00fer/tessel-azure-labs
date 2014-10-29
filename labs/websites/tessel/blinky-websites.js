@@ -3,8 +3,7 @@ var http = require('http');
 
 // Replace the [websitename] with the name of the website
 // your are connecting to.
-// var apiUrl = "https://[websitename].azurewebsites.net";
-var apiUrl = "https://tessel.azurewebsites.net";
+var apiUrl = "https://[websitename].azurewebsites.net";
 
 console.log();
 console.log('blinky-websites');
