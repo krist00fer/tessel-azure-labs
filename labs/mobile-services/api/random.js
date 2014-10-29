@@ -13,7 +13,7 @@ exports.get = function(request, response) {
 };
 
 // Simple method that simulates a dice and returns a number
-// from and including 1, to and including 6.
+// from and including low, to and including high.
 function randomIntInc (low, high) {
     return Math.floor(Math.random() * (high - low + 1) + low);
 }
