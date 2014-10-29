@@ -68,9 +68,9 @@ You will see some output on the console and when you are told to press the confi
 
 All of this lab has been done without using either of the two portals, currently available to manage your Azure account. Now, take some time and browse to the [Azure Portal at http://manage.windowsazure.com](http://manage.windowsazure.com) and explore the section for Mobile Services and see if you can find your newly created service there.
 
-Challenges:
+### Challenges
 
-* Update your RESTful API using the portal so the service never return the number 3 (or any number)
+* Update your RESTful API using the portal so the service never return the number 3 (or any number you select)
 * Find the logs you've been written using the portal
 * Call out to any other service, in Azure our outside, from within your custom API code
 

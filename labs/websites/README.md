@@ -91,10 +91,40 @@ You'll be redirected to your website and if everything works according to plans,
 
 Congratulations, you have now created, hosted and invoked a custom Web Service using Node.js and Azure Websites.
 
+### Connecting Tessel to our Custom API in mobile services
+
+So now that we have a custom RESTful Web API, let's call it from our Tessel. The sample code is located in the [tessel](tessel) folder. Familiarize yourself with the code and change the URL to point to your custom API, then:
+
+	cd tessel
+	tessel run blinky-websites.js
+
+You will see some output on the console and when you are told to press the config-button (close to the orange led on your Tessel), do so and your Tessel will call your custom API hosted on Azure Websites. When the random number returns, the Tessel will flash its led as many times as the random number said.
+
+### Monitor server side log using Azure-CLI (Azure x-plat tools)
+
+Whenever we press the button on the Tessel a HTTP Request gets sent to the Azure Website hosting your "random service". Wouldn't it be nice if we could monitor whatever gets written to the serverside log, directly from our computer? It turns out it is quite easy.
+
+Since we have already (in the [setup lab](../_setup)) connected our Azure subscription with the current user on this computer, we can user the command line tools for azure to do exactly that. Keep running the Tessel application and open a new terminal/console window and execute the following command in the new window. Replace [websitename] with the name of the website you created.
+
+	azure site log tail [websitename]
+
+As you keep sending requests to your web service, you'll see how the logs displays in real time on your computer. Really usefull for debugging and simple monitoring.
+
+### Challenges
+
+* Update your RESTful API using the portal so the service never return the number 3 (or any number you select)
+* Call out to any other service, in Azure our outside, from within your custom API code
+* Update your server side code in such way that you have a dependency for other NPM packages, for example 'express' by adding a correctly written packet.json file. (Hint: in order to download and install the external dependencies, use the "Concole" inside Visual Studio Online to execute the command "npm install")
+* Create a new website and deploy your server side code using Git instead of using Visual Studio Online, then connect your tessel to that site and verify that it works ([more info](http://azure.microsoft.com/en-us/documentation/articles/web-sites-deploy/))
+* Setup continious deployment from [visualstudio.com](http://visualstudio.com) or [github.com](http://github.com) and verify that you can deploy code just by "checking in" or pushing.
+* Develop your RESTful service using any other supported programming language, i.e: .NET, PHP, Java, Python, Node.js ([more info](http://azure.microsoft.com/en-us/documentation/services/websites/))
+
 Summary
 -------
 
 More information
 ----------------
 
-* [How to Deploy an Azure Website](http://azure.microsoft.com/en-us/documentation/articles/web-sites-deploy/)
+You have just created Node.js RESTful API, hosted it on Azure Websites and then deployed a Node.js program to your Tessel that calls out to the cloud and receives random numbers.
+
+Now, go ahead and play around with the solution. Tweak it, extend it, use it in a bigger context. Good luck!
