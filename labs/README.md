@@ -16,7 +16,7 @@ In this lab, we will help you get your computer, your Tessel and your Microsoft 
 During this hands on lab you'll learn how to create your own REST API and host it in Microsoft Azure Mobile Services and communicate with that service from your Tessel microcontroller.
 
 [Creating and Calling a Custom REST API with Azure WebSites](websites)
-----------------------------------------------------------
+----------------------------------------------------------------------
 
 "Azure Websites is a fully managed Platform-as-a-Service (PaaS) that enables you to build, deploy and scale enterprise-grade web Apps in seconds. Focus on your application code, and let Azure take care of the infrastructure to scale and securely run it for you."
 
