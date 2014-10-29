@@ -14,7 +14,7 @@ In order to successfully complete this lab you need to:
 Instructions
 ------------
 
-Azure Mobile Services provides you with an architecture and a service to host highly scalable rest services. Easily accessable from phones, tablets, web pages, computers and Tessel microcontrollers. You can create your own Mobile Service directly through the [portal](http://manage.windowsazure.com) or by using the Azure cross platform tools, Azure-CLI. In this lab we will mainly use the command line tools.
+Azure Mobile Services provides you with an architecture and a service to host highly scalable rest services. Easily accessible from phones, tablets, web pages, computers and Tessel microcontrollers. You can create your own Mobile Service directly through the [portal](http://manage.windowsazure.com) or by using the Azure cross platform tools, Azure-CLI. In this lab we will mainly use the command line tools.
 
 ### Creating a new Azure Mobile Service
 
@@ -24,22 +24,22 @@ Open a terminal/console Window (PowerShell Window will work just fine as well if
 
 *Tip: You can always add --help to azure-cli commands in order to get help*
 
-Briefly make yourself familiar with the help page and then run the following command to get a list of locations where Mobile Serivces currently is available:
+Briefly make yourself familiar with the help page and then run the following command to get a list of locations where Mobile Services currently is available:
 
 	azure mobile locations
 
- Execute the following commande where you replace [servicename] [sqlAdminUsername] and [sqlAdminPassword] with values that you decide for yourself. Servicename must be globaly unique so make sure you come up with something unique and feel free to use another location if that takes you closer to your end users.
+ Execute the following command where you replace [servicename] [sqlAdminUsername] and [sqlAdminPassword] with values that you decide for yourself. Servicename must be globally unique so make sure you come up with something unique and feel free to use another location if that takes you closer to your end users.
 
 	azure mobile create [servicename] [sqlAdminUsername] [sqlAdminPassword] --location 'North Europe'
 
-This will create your own instance of Azure Mobile Services in the datacenter of your choice. By default, if you don't specify anything else, we also tell Azure Mobile Serivces to build the service using JavaScript/Node.js and that fit us just fine since the Tessel is programmed using JavaScript. Make sure you remember your servicename, sqladminusername, sqladminpassword and your location for future use. 
+This will create your own instance of Azure Mobile Services in the datacenter of your choice. By default, if you don't specify anything else, we also tell Azure Mobile Services to build the service using JavaScript/Node.js and that fit us just fine since the Tessel is programmed using JavaScript. Make sure you remember your servicename, sqladminusername, sqladminpassword and your location for future use. 
 
 Let's create a really simple REST API named "random" that responds with a random number whenever you GET data from the corresponding URL. The following commands creates and updates the permissions for our service.
 
 	azure mobile api create --help
 	azure mobile api create [servicename] random --permissions get=public
 
-This creates a placeholder for us to upload/write our own JavaScript/Node.js code. By setting the --permissions flag to get=public, we open up the service for beeing accessed without any authentication using the HTTP GET Verb.
+This creates a placeholder for us to upload/write our own JavaScript/Node.js code. By setting the --permissions flag to get=public, we open up the service for being accessed without any authentication using the HTTP GET Verb.
 
 For this lab, we have provided you with a simple implementation of the random service so you don't even have to write that one on your own. Have a look at the file [api/random.js](api/random.js) and familiarize yourself with what it does.
 
@@ -55,12 +55,27 @@ That's it! You have now created and hosted your RESTful Web Service in Azure Mob
 
 You'll see a list of the last 10 logs that has been written from within your API.
 
-Optional: Browse to the "old" [Azure Portal at http://manage.windowsazure.com](http://manage.windowsazure.com) and explore the section for Mobile Services and see if you can find your newly created service there.
+### Connecting Tessel to our Custom API in mobile services
+
+So now that we have a custom RESTful Web API, let's call it from our Tessel. The sample code is located in the [tessel](tessel) folder. Familiarize yourself with the code and change the URL to point to your custom API, then:
+
+	cd tessel
+	tessel run blinky-mobile-services.js
+
+You will see some output on the console and when you are told to press the config-button (close to the orange led on your Tessel), do so and your Tessel will call your custom API hosted on Azure Mobile Services. When the random number returns, the Tessel will flash its led as many times as the random number said.
+
+### Browse to the Azure portal
+
+All of this lab has been done without using either of the two portals, currently available to manage your Azure account. Now, take some time and browse to the [Azure Portal at http://manage.windowsazure.com](http://manage.windowsazure.com) and explore the section for Mobile Services and see if you can find your newly created service there.
+
+Challenges:
+
+* Update your RESTful API using the portal so the service never return the number 3 (or any number)
+* Find the logs you've been written using the portal
+* Call out to any other service, in Azure our outside, from within your custom API code
 
 Summary
 -------
-(Include a short summary that explains what has been done during the lab. Use a couple of sentences, bullets and other, but don't explain the full lab once again)
+You have just created Node.js RESTful API, hosted it on Azure Mobile Services and then deployed a Node.js program to your Tessel that calls out to the cloud and receives random numbers.
 
-(OTHER - REMOVE THIS SECTION)
------------------------------
-(Put whatever code files is needed for the lab directly in the lab's folder or if necessary in sub folders. Also update the main README.md file located in the "labs-folder" and link to this new lab. Make sure to spell check the lab using English US settings.)
+Now, go ahead and play around with the solution. Tweak it, extend it, use it in a bigger context. Good luck!
