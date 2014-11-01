@@ -1,4 +1,4 @@
-Calling a RESTful service from your Tessel running in a Docker container on Linux hosted in an Azure VM.
+Calling a REST API from your Tessel running in a Docker container on Linux hosted in an Azure VM.
 =============
 In this lab we will run a RESTful service in a Docker container and call it from our Tessel. On the server side we setup a host to run the container and deploy our service to. This lab is a continuation on the Websites lab and the clientside code is identical. On the development machine we will use a lightweight Linux VM to run the xplat-cli command line tools we use to control the Docker host in Azure.
 
@@ -8,7 +8,7 @@ Prerequisites
 In order to successfully complete this lab you need to:
 
 * Have successfully setup your Azure Subscription, your development environment and your Tessel according to instructions outlined in the [Setup Lab](../_setup).
-* Installers for 
+* Download the 
 * (Add other prerequisites here)
 * (If the lab uses features, tools or languages that are only available on certain operating systems make sure you specify them here, i.e. PowerShell, Visual Studio, C#, etc.)
 * (...)
