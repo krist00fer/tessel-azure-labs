@@ -15,7 +15,7 @@ In order to successfully complete this lab you need to:
 Instructions
 ------------
 
-Durin this lab we will use the new [Azure Portal](http://portal.azure.com) for all server side activities, including:
+During this lab we will use the new [Azure Portal](http://portal.azure.com) for all server side activities, including:
 
 * Creating an Azure WebSite
 * Writing a simple Node.js RESTful Web Service
