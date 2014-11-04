@@ -15,8 +15,8 @@ In order to successfully complete this lab you need to:
 * If you want to configure and create the EventHub by code an installation of Visual Studio with the Azure SDK is necessary. You can download a free version of Visual Studio from http://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx. The Azure SDK can be downloaded from http://azure.microsoft.com/en-us/downloads/
 
 
-Instructions (Using the Azure Portal)
--------------------------------------
+Instructions (using the Azure Portal to create an Event Hub)
+------------------------------------------------------------
 
 During this secition we will use the [Azure Portal](https://manage.windowsazure.com) for the creation and configuration of the EventHubs.
 We will: 
@@ -92,7 +92,7 @@ Let's start coding and let us create the Event Hub by code
 ![ServiceBus Connection Screenshot](images/05_GetConnectionInfo_01.png)
 * The provided connection string looks similiar to:
 	Endpoint=sb://robeichsb-ns.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=VaXjVOfZWDj47+bDtCzmbYfu2vt6+I=	
-* Please copy the value of ShardAccessKey into your code
+* Please copy the value of SharedAccessKey into your code
 * Add the following two using statements to your code:
 
 	using Microsoft.ServiceBus;
