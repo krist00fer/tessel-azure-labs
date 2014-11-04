@@ -1,51 +1,38 @@
-(Name of lab)
-=============
-(Enter a short description of what the lab will go through here. Approximately 5-10 sentences.)
+Using EventHubs for sending telemetry data at high scale
+========================================================
+Many modern solutions that intend to provide adaptive customer experiences or to improve products through continuous feedback and automated telemetry are faced with the challenge of how to securely and reliably ingest very large amounts of information from many concurrent publishers. Microsoft Azure Event Hubs is a managed platform service that provides a foundation for large-scale data ingestion in a broad variety of scenarios. Examples of such scenarios are behavior tracking in mobile apps, traffic information from web farms, in-game event capture in console games, or telemetry data collected from industrial machines or connected vehicles. The common role that Event Hubs plays in solution architectures is that it acts as the “front door” for an event pipeline, often called an event ingestor. An event ingestor is a component or service that sits between event producers and event consumers to decouple the production of an event stream from the consumption of those events.
+
+You'll create a EventHub with the requiered configuration and security setting using the Microsoft Azure Portal or custom code using Visual Studio. Afterwards we will send telemetry from your Tessel microcontroller to the EventHub. 
+
+
 
 Prerequisites
 -------------
 In order to successfully complete this lab you need to:
 
 * Have successfully setup your Azure Subscription, your development environment and your Tessel according to instructions outlined in the [Setup Lab](../_setup).
-* (Add other prerequisites here)
-* (If the lab uses features, tools or languages that are only available on certain operating systems make sure you specify them here, i.e. PowerShell, Visual Studio, C#, etc.)
-* (...)
+* You can create and configure the EventHub by using the Azure portal. In this case you don't need any further prerequisites
+* If you want to configure and create the EventHub by code an installation of Visual Studio with the Azure SDK is necessary. You can download a free version of Visual Studio from http://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx. The Azure SDK can be downloaded from http://azure.microsoft.com/en-us/downloads/
 
-Instructions
-------------
-(Describe the lab here. Divide the lab into logical parts in order for the participant to easily follow along. If possible, describe the steps in the lab using steps that are platform agnostic, i.e. it should work using whatever operating system you want. If possible use Azure-CLI to manage Windows Azure, but also explain how to use the portal if you feel it adds extra value or visibility. Remember that the portal(s) are changing faster than Azure-CLI, so the labs will be easier to maintain if we use Azure-CLI and since the Tessel's programming tools are used from the console, we might as well stick with it as much as possible. The preferred programming language on the server and client side should be JavaScript if possible in order to keep complexity of setup to a minimum.)
 
-### Part 1
-(Text in part one goes here)
+Instructions (Using the Azure Portal)
+-------------------------------------
 
-### Part 2
-(Text in part two goes here)
+During this secition we will use the [Azure Portal](https://manage.windowsazure.com) for the creation and configuration of the EventHubs.
+We will: 
 
-* (Bullet one)
-* (Bullet two)
-  * (Bullet two point one)
-  * (Bullet two point two)
+* Create a new ServiceBus Namespace
+* Create a new EventHub within the created ServiceBus Namespace
+* Create the necessary credentials for accessing the EventHub
 
-#### Part 2.1
-(Text in part two point one goes here)
+Later in the lab we will see how the same configuration can be done from a C# code within a console application running on-premise.
 
-#### Part 2.2
-(Text in part two point two goes here)
+### Creating a new Azure ServiceBus namespace
 
-#### Part 3
-(Text in part three goes here)
-
-	// Use comments in code only if code is otherwise confusing.
-	// We want the code to be as good and clean written that it
-	// is self-explanatory and doesn't need comments. Still don't
-	// be afraid to use comments if needed.
-
-	code.indent(tab); // Indent code with 4 spaces (or tab) to have it appear as code
-
-Summary
--------
-(Include a short summary that explains what has been done during the lab. Use a couple of sentences, bullets and other, but don't explain the full lab once again)
-
-(OTHER - REMOVE THIS SECTION)
------------------------------
-(Put whatever code files is needed for the lab directly in the lab's folder or if necessary in sub folders. Also update the main README.md file located in the "labs-folder" and link to this new lab. Make sure to spell check the lab using English US settings.)
+* Start by logging in to the [Azure Portal](https://manage.windowsazure.com).
+* Click "+ NEW", located in the lower left corner and select: App Services -> Service Bus -> Event Hub -> Quick Create
+![Service Bus Creation Screenshot](images/01_CreateSBNamespace.png)
+* Fill in a Event Hub Name of your choice (How about "YourName + _EH")
+* Select a region (because we are in Berlin we would recommend Europe North or Europe West but you are free to choose any other region)
+* Fill in a Namespae Name. This name will be part of the URI which uniquely identifies your Event Hub (How about "YourName + _SB")
+* Click on "CREATE A NEW EVENT HUB"
