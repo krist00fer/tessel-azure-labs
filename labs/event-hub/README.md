@@ -102,6 +102,21 @@ Let's start coding and let us create the Event Hub by code
 
 Contratulation! You have created your second Event Hub within a C# application.
 
+### Connecting Tessel to the new created Event Hub
+
+So now that we have a Event Hub ready for us to ingest data, let's call it from our Tessel. The sample code is located in the [tessel](tessel) folder. Familiarize yourself with the code and change the URL to point to your custom API, then:
+
+	cd tessel
+	tessel run blinky-websites.js
+
+You will see some output on the console and when you are told to press the config-button (close to the orange led on your Tessel), do so and your Tessel will call your custom API hosted on Azure Websites. When the random number returns, the Tessel will flash its led as many times as the random number said.
+
+### Monitor server side log using Azure-CLI (Azure x-plat tools)
+
+Whenever we press the button on the Tessel a HTTP Request gets sent to the Azure Website hosting your "random service". Wouldn't it be nice if we could monitor whatever gets written to the serverside log, directly from our computer? It turns out it is quite easy.
+
+Since we have already (in the [setup lab](../_setup)) connected our Azure subscription with the current user on this computer, we can user the command line tools for azure to do exactly that. Keep running the Tessel application and open a new terminal/console window and execute the following command in the new window. Replace [websitename] with the name of the website you created.
+
 
 
 Summary
