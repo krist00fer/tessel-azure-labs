@@ -14,7 +14,7 @@ var eventHubUri = 'https://' + namespace + '.servicebus.windows.net' + '/' + hub
  
 function createSASToken(uri, keyName, key)
 {
-    //Token expires in a december
+    //Token expires in december
     var expiry = '1417774602';
  
     var signedString = encodeURIComponent(uri) + '\n' + expiry;
