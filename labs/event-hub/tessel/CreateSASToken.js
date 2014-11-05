@@ -12,7 +12,7 @@ var deviceName = 'mytessel';
 // Full Event Hub publisher URI
 var eventHubUri = 'https://' + namespace + '.servicebus.windows.net' + '/' + hubname + '/publishers/' + deviceName + '/messages';
  
-function create_sas_token(uri, keyName, key)
+function createSASToken(uri, keyName, key)
 {
     //Token expires in a december
     var expiry = '1417774602';
@@ -26,7 +26,7 @@ function create_sas_token(uri, keyName, key)
     return token;
 }
  
-var my_sas = create_sas_token(eventHubUri, eventHubAccessKeyName, eventHubAccessKey)
-console.log(my_sas);
+var createdSASToken = createSASToken(eventHubUri, eventHubAccessKeyName, eventHubAccessKey)
+console.log(createdSASToken);
 
 
