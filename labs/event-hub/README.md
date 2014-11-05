@@ -14,6 +14,7 @@ In order to successfully complete this lab you need to:
 * Have a Node.js version installed and running on your pc. If you have not yet installed Node.js just go to http://www.nodejs.org/ and click on the install button. 
 * You can create and configure the EventHub by using the Azure portal. In this case you don't need any further prerequisites
 * If you want to configure and create the EventHub by code an installation of Visual Studio with the Azure SDK is necessary. You can download a free version of Visual Studio from http://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx. The Azure SDK can be downloaded from http://azure.microsoft.com/en-us/downloads/
+* If you want to see the messages which you have send to Event Hub, just to proove that your messages really arrived, you can use tools like the Service Bus Explorer. You can download the Service Bus Explorer from https://code.msdn.microsoft.com/windowsazure/Service-Bus-Explorer-f2abca5a. If you are running on a non Windows machine and want to use the Service Bus Explorer, how about just spinning up a virtual machine running windows in Azure and installig it there?
 
 
 Instructions (using the Azure Portal to create an Event Hub)
@@ -130,7 +131,15 @@ Congratulation! You have finished the lab.
 
 ### User Service Bus Explorer to see the results of your ingests
 
-tbd
+If you want to proove that your messages are "inside" of Event Hub and waiting for processing you can use "Service Bus Explorer" (look to the prerequisites seciton of this document). 
+* Just start "Service Bus Explorer" and connect it using the Service Bus Connection string (provided by the Azure portal) to connect to the Service Bus Namespace. After the connection is sucessfull established you see your created Event Hub(s).
+![Service Bus Explorer](images/06_SBExplorer_01.png)
+* Identify the Partition which has a "End Sequence Number" different than -1 or 0 and "right click" on this partition
+* Select "Create Partition Listener"
+* In the new window click on "Start" in the right lower area.
+![Service Bus Explorer](images/06_SBExplorer_02.png)
+* If you now click on "Events" you can see all telemetry data which was send from your Tessel to the Event Hub.
+![Service Bus Explorer](images/06_SBExplorer_02.png)
 
 
 Summary
