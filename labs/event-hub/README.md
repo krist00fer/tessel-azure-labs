@@ -139,7 +139,7 @@ If you want to proove that your messages are "inside" of Event Hub and waiting f
 * In the new window click on "Start" in the right lower area.
 ![Service Bus Explorer](images/06_SBExplorer_02.png)
 * If you now click on "Events" you can see all telemetry data which was send from your Tessel to the Event Hub.
-![Service Bus Explorer](images/06_SBExplorer_02.png)
+![Service Bus Explorer](images/06_SBExplorer_03.png)
 
 
 Summary
