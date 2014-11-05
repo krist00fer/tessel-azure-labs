@@ -35,40 +35,49 @@ There are two components we need to setup in Azure to have everything working: s
 
 During this part of the lab we are going to use the Azure-CLI (Azure x-Plat Tools), even though you can easily do the same thing using the management portal if you want to.
 
-1. Open a terminal/console windows
-2. Execute the following commands to gain some insights into what we are trying to do next.
+Open a terminal/console windows. Execute the following commands to gain some insights into what we are trying to do next.
 
-  azure storage account -–help
-  azure storage account create --help
+	azure storage account -–help
+	azure storage account create --help
 
-3. When you are ready, execute the following command to create a new storage account. Replace <name> with a globally unique name that you want to use. The command will fail if the name is already taken, so chose something creative or just try again until you find something unique. You can also change the location to whatever datacenter you feel like using. Often the recommendation is to put your storage account in the same datacenter as your other services in order to reduce lag and expenses related to data transfers between datacenters, but in this lab you can chose whatever location you feel appropriate.
+When you are ready, execute the following command to create a new storage account. Replace <name> with a globally unique name that you want to use. The command will fail if the name is already taken, so chose something creative or just try again until you find something unique. You can also change the location to whatever datacenter you feel like using. Often the recommendation is to put your storage account in the same datacenter as your other services in order to reduce lag and expenses related to data transfers between datacenters, but in this lab you can chose whatever location you feel appropriate.
 
-  azure storage account create –location “North Europe” <name>
+	azure storage account create –location “North Europe” <name>
 
-4. If everything is successful you should now have a new storage account created. Remember the name you used and use it whenever we refer to the name of your storage account. In order to access that storage account we need to retrieve the storage account key. Execute the following command to retrieve the keys.
+If everything is successful you should now have a new storage account created. Remember the name you used and use it whenever we refer to the name of your storage account. In order to access that storage account we need to retrieve the storage account key. Execute the following command to retrieve the keys.
 
-  azure storage account keys list –help
-  azure storage account keys list <name>
+	azure storage account keys list –help
+	azure storage account keys list <name>
 
-5. These keys, there are two equal valuable once, can only be accessed if you are administrator of the Azure Subscription that hosts the particular Storage Account and those keys should be handled with care. Don’t give them away to anyone you don’t trust and don’t save them on uncontrolled devices or clients. With any of these keys you have full control over that specific storage account. Copy and save the keys on your computer for now, we’ll be using them soon again. You can always retrieve the keys again later by executing the same command or though visiting the management portal. If you need to you can also create new keys, but that will invalidate any other keys already out there.
+Sample output
 
-6. Throughout this lab we’ll be calling into this Storage Account through some tools and mane of those tools (including Azure-CLI) accepts they name and key of your storage account as input parameters, but they also accept them saved in Environment Variables. The process of saving values in Environment Variables differs some through different operating systems and terminal/command windows/shells. Here are some examples and if you are using another operating system or shell, please search the Internet for information about how to set Environment Variables. Setting environment variables according to this will not persist your changes so if you open a new terminal/command window, restart your computer, etc. your information will be forgotten:
+	PS C:\dev\tessel-azure-labs> azure storage account keys list tesselazure
+	info:    Executing command storage account keys list
+	+ Getting storage account keys
+	data:    Primary ZF2po8rCJk.....DATA-REMOVED-FROM-SAMPLE....4rrt5EN2lK1k2hA==
+	data:    Secondary lo+nGo/W.....DATA-REMOVED-FROM-SAMPLE....Pt1orNXRnJjZA7g2w==
+	info:    storage account keys list command OK
 
-  // Windows - Command Prompt
-  set <name> = <value>
+These keys, there are two equal valuable once, can only be accessed if you are administrator of the Azure Subscription that hosts the particular Storage Account and those keys should be handled with care. Don’t give them away to anyone you don’t trust and don’t save them on uncontrolled devices or clients. With any of these keys you have full control over that specific storage account. Copy and save the keys on your computer for now, we’ll be using them soon again. You can always retrieve the keys again later by executing the same command or though visiting the management portal. If you need to you can also create new keys, but that will invalidate any other keys already out there.
 
-  // Windows – PowerShell
-  $env:<name> = <value>
+Throughout this lab we’ll be calling into this Storage Account through some tools and mane of those tools (including Azure-CLI) accepts they name and key of your storage account as input parameters, but they also accept them saved in Environment Variables. The process of saving values in Environment Variables differs some through different operating systems and terminal/command windows/shells. Here are some examples and if you are using another operating system or shell, please search the Internet for information about how to set Environment Variables. Setting environment variables according to this will not persist your changes so if you open a new terminal/command window, restart your computer, etc. your information will be forgotten:
 
-7. Set the Environment Variables: AZURE_STORAGE_ACCOUNT and AZURE_STORAGE_ACCESS_KEY to the name of your storage account and the access key to that storage account respectively.
+	// Windows - Command Prompt
+	set <name> = <value>
 
-  // Windows – Command Prompt
-  set AZURE_STORAGE_ACCOUNT = <name>
-  set AZURE_STORAGE_ACCESS_KEY = <key>
+	// Windows – PowerShell
+	$env:<name> = <value>
 
-  // Windows – PowerShell
-  $env:AZURE_STORAGE_ACCOUNT = <name>
-  $env:AZURE_STORAGE_ACCESS_KEY = <key>
+Set the Environment Variables: AZURE_STORAGE_ACCOUNT and AZURE_STORAGE_ACCESS_KEY to the name of your storage account and the access key to that storage account respectively.
+
+
+	// Windows – Command Prompt
+	set AZURE_STORAGE_ACCOUNT = <name>
+	set AZURE_STORAGE_ACCESS_KEY = <key>
+
+	// Windows – PowerShell
+	$env:AZURE_STORAGE_ACCOUNT = <name>
+	$env:AZURE_STORAGE_ACCESS_KEY = <key>
 
 
 
@@ -88,8 +97,8 @@ There are several choices where you can host services in Microsoft Azure, such a
 * Websites
 * WebRoles
 * Virtual Machines
-  * Windows
-  * Linux
+	* Windows
+	* Linux
 * App container, such as Dockers
 * etc.
 
