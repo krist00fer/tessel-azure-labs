@@ -1,0 +1,74 @@
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\Assets\ApplicationIcon.png
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\Assets\Tiles\FlipCycleTileLarge.png
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\Assets\Tiles\IconicTileSmall.png
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\PhoneApp1.dll
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\PhoneApp1.pdb
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\resources.pri
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\AppxManifest.xml
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\PhoneApp1.build.appxrecipe
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\Properties\WMAppManifest.xml
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\AppManifest.xaml
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\PhoneApp1_Debug_AnyCPU.xap
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\App.g.cs
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\MainPage.g.cs
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\PhoneApp1.g.resources
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\PhoneApp1.Resources.AppResources.resources
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\PhoneApp1.csproj.GenerateResource.Cache
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\PhoneApp1.dll
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\PhoneApp1.pdb
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\priconfig.xml
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\priconfig.xml.intermediate
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\layout.resfiles
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\layout.resfiles.intermediate
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\resources.resfiles
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\resources.resfiles.intermediate
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\pri.resfiles
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\pri.resfiles.intermediate
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\qualifiers.txt
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\qualifiers.txt.intermediate
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\ProjectArchitectures.txt
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\MDILProjectFiles.xml
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\XapCacheFile.xml
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\Bin\Debug\Microsoft.WindowsAzure.Messaging.dll
+c:\users\rachelye\documents\visual studio 2013\Projects\GenerateSAS\PhoneApp1\obj\Debug\PhoneApp1.csprojResolveAssemblyReference.cache
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\Assets\ApplicationIcon.png
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\Assets\Tiles\FlipCycleTileLarge.png
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\Assets\Tiles\FlipCycleTileSmall.png
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\Assets\Tiles\IconicTileMediumLarge.png
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\Assets\Tiles\IconicTileSmall.png
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\PhoneApp1.dll
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\PhoneApp1.pdb
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\resources.pri
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\AppxManifest.xml
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\PhoneApp1.build.appxrecipe
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\Properties\WMAppManifest.xml
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\AppManifest.xaml
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\PhoneApp1_Debug_AnyCPU.xap
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\Bin\Debug\Microsoft.WindowsAzure.Messaging.dll
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\PhoneApp1.csprojResolveAssemblyReference.cache
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\App.g.cs
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\MainPage.g.cs
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\PhoneApp1.g.resources
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\PhoneApp1.Resources.AppResources.resources
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\PhoneApp1.csproj.GenerateResource.Cache
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\PhoneApp1.dll
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\PhoneApp1.pdb
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\priconfig.xml
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\priconfig.xml.intermediate
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\layout.resfiles
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\layout.resfiles.intermediate
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\resources.resfiles
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\resources.resfiles.intermediate
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\pri.resfiles
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\pri.resfiles.intermediate
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\qualifiers.txt
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\qualifiers.txt.intermediate
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\ProjectArchitectures.txt
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\MDILProjectFiles.xml
+C:\Users\rachelye\Documents\AZURE ISV\FY15\Hackfest\Azure_IoT_Tessel\VSProject\PhoneApp1\obj\Debug\XapCacheFile.xml

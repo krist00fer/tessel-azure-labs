@@ -11,8 +11,10 @@ Prerequisites
 In order to successfully complete this lab you need to:
 
 * Have successfully setup your Azure Subscription, your development environment and your Tessel according to instructions outlined in the [Setup Lab](../_setup).
+* Have a Node.js version installed and running on your pc. If you have not yet installed Node.js just go to http://www.nodejs.org/ and click on the install button. 
 * You can create and configure the EventHub by using the Azure portal. In this case you don't need any further prerequisites
 * If you want to configure and create the EventHub by code an installation of Visual Studio with the Azure SDK is necessary. You can download a free version of Visual Studio from http://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx. The Azure SDK can be downloaded from http://azure.microsoft.com/en-us/downloads/
+* If you want to see the messages which you have send to Event Hub, just to proove that your messages really arrived, you can use tools like the Service Bus Explorer. You can download the Service Bus Explorer from https://code.msdn.microsoft.com/windowsazure/Service-Bus-Explorer-f2abca5a. If you are running on a non Windows machine and want to use the Service Bus Explorer, how about just spinning up a virtual machine running windows in Azure and installig it there?
 
 
 Instructions (using the Azure Portal to create an Event Hub)
@@ -53,7 +55,6 @@ You see now a dashboard which gives you more information concerning the created 
 * You see information concerning the MESSAGE RETENTION (default is one day), the STATE of the Event Hub and the PARTITION COUNT
 * In the lower part of the page you see a secition called "shared access policies". Within this section we create a new entry
 * Just key in a new policy name (the name is up to you; How about "SendRights")
-![Event Hub Screenshot](images/03_CreateSAS_01.png)
 * Click "Save" at the bottom of the page
 * Copy the "PRIMARY KEY" and store it for further usage
 
@@ -102,14 +103,58 @@ Let's start coding and let us create the Event Hub by code
 
 Contratulation! You have created your second Event Hub within a C# application.
 
+### Connecting Tessel to the new created Event Hub
+
+So now that we have a Event Hub ready for us to ingest data, let's call it from our Tessel. The sample code is located in the [tessel](tessel) folder. Just open the file [blinky-EventHub.js](tessel\blinky-EventHub.js). 
+
+Familiarize yourself with the code and change the following values with the values you have provided during the creation/configuration of the Event Hub: 
+	- namespace (It might look like '<<YourInitials>> + EH + <<-ns>>')
+	- hubname (If you created the Event Hub with the provided C# code it's: 'demoeventhub'; If not it might be <<YourInitials>> + "EH")
+	- eventHubAccessKeyName (If you created the Event Hub with the provided C# code it's: 'EventHubKey')
+
+In order to secure the communication with the Event Hub we have to provide a so called "Shared Access Signature Token" in each request from the Tessel to the Event Hub. You can create such a "Shared Access Signature Token" with the Node.js application which is provided [here](tessel\CreateSASToken.js). 
+Just provide the same values for namespace, hubname, eventHubAccessKeyName AND eventHubAccessKey that you used in the blinky-EventHub.js. You can find the value for eventHubAccessKey in the Azure portal (Just look in this tutorial for: "Copy the "PRIMARY KEY" and store it for further usage") or by re-running the C# code which created the Event Hub. It's the "primary Key" which is shown at the console window.
+
+* Run the Node.Js application CreateSASToken.js locally on you PC and copy / paste the Shared Access Signature token which is shown at the console into your blinky-EventHub.js application. The Shared Access Signature token should be the value of the variable: createdSAS. Just take care that you remove CR/LF after you copied the signature from the console window.
+
+* Locate in the blinky-EventHub.js code the line which is marked: "// Payload to send". This is the json formatted payload you are going to send to Event Hub. Change it  to whatever you like to send. 
+
+* Now it's time to run your application. Just key in the following commands:
+
+	- cd tessel
+	- tessel run blinky-EventHub.js
+
+You will see some output on the console and if everything works well you will see a http response code of <<201 Created>> meaning your request to Event Hub has been fulfilled and resulted in a new resource being created. 
+
+Congratulation! You have finished the lab. 
+
+
+### User Service Bus Explorer to see the results of your ingests
+
+If you want to proove that your messages are "inside" of Event Hub and waiting for processing you can use "Service Bus Explorer" (look to the prerequisites seciton of this document). 
+* Just start "Service Bus Explorer" and connect it using the Service Bus Connection string (provided by the Azure portal) to connect to the Service Bus Namespace. After the connection is sucessfull established you see your created Event Hub(s).
+![Service Bus Explorer](images/06_SBExplorer_01.png)
+* Identify the Partition which has a "End Sequence Number" different than -1 or 0 and "right click" on this partition
+* Select "Create Partition Listener"
+* In the new window click on "Start" in the right lower area.
+![Service Bus Explorer](images/06_SBExplorer_02.png)
+* If you now click on "Events" you can see all telemetry data which was send from your Tessel to the Event Hub.
+![Service Bus Explorer](images/06_SBExplorer_03.png)
 
 
 Summary
 -------
 
+You have just created an Event Hub inside of Service Bus and deployed a Node.js program to your Tessel that sends telemetry data to the Event Hub. 
+
+Now, go ahead and play around with the solution. Tweak it, extend it, use it in a bigger context. Maybe you can host the creation of the Shared Access Signature in a Azure WebSite Rest Api and call it from the Tessel before you communicate with Event Hub. Good luck!
+
+
 More information
 ----------------
+Azure portal: https://manage.windowsazure.com
+Azure portal preview: http://portal.azure.com
+Azure Service Bus: http://azure.microsoft.com/en-us/documentation/services/service-bus/#node
+Event Hubs: http://msdn.microsoft.com/en-us/library/azure/dn789972.aspx
+Shared Access Signature: http://msdn.microsoft.com/en-us/library/azure/jj721951.aspx
 
-You have just created Node.js RESTful API, hosted it on Azure Websites and then deployed a Node.js program to your Tessel that calls out to the cloud and receives random numbers.
-
-Now, go ahead and play around with the solution. Tweak it, extend it, use it in a bigger context. Good luck!
