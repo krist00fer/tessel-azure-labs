@@ -121,8 +121,8 @@ Just provide the same values for namespace, hubname, eventHubAccessKeyName AND e
 
 * Now it's time to run your application. Just key in the following commands:
 
-	cd tessel
-	tessel run blinky-EventHub.js
+	- cd tessel
+	- tessel run blinky-EventHub.js
 
 You will see some output on the console and if everything works well you will see a http response code of <<201 Created>> meaning your request to Event Hub has been fulfilled and resulted in a new resource being created. 
 
