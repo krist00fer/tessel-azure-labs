@@ -1,3 +1,8 @@
+# -= Azure-CLI =-
+
+# Ignore error files created by Azure-CLI
+azure.err
+
 # -= Node.js =-
 
 # Logs
