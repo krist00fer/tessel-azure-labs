@@ -3,15 +3,19 @@ Send Push Notification to Mobile with Notification Hubs
 In this lab you will learn how to send push notification to a mobile device, Windows Phone or Android, directly from tessel.
 This lab demonstrate how to use Azure Notification Hub with the Notification Hubs REST API.
 This lab uses the tessel.io with the <a href="http://start.tessel.io/modules/ambient">ambient module</a>. We modified the ambient sample, when ever something happens with sound it will send a push notification to all registered mobile devices.
+You can choose between developing Android mobile app OR Windows Phone mobile app.
 
 Prerequisites
 -------------
 In order to successfully complete this lab you need to:
 
 * Have successfully setup your Azure Subscription, your development environment and your Tessel according to instructions outlined in the [Setup Lab](../_setup).
-* (Add other prerequisites here)
-* (If the lab uses features, tools or languages that are only available on certain operating systems make sure you specify them here, i.e. PowerShell, Visual Studio, C#, etc.)
-* (...)
+* <a href="http://start.tessel.io/modules/ambient">ambient module</a>
+* For Android App:
+	* Google Developers Account (Only in case of the chossing Android App, for Windows Phone app we will use 		unauthenticated push notifications)
+	* Eclipse with Android SDK
+* For Windows Phone App:
+	* Visual Studio with Windows Phone SDK
 
 Instructions
 ------------
