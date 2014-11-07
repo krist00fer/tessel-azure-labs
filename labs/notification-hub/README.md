@@ -29,11 +29,13 @@ Instructions
 ### Part 2 - Get the SAS Token
 Applications can authenticate to Microsoft Azure Service Bus (including Notification Hubs) using either Shared Access Signature (SAS) authentication, or by authenticating through the Microsoft Azure Active Directory Access Control (also known as Access Control Service or ACS).
 For the simplicity we will use in this lab SAS authentication. For detail about SAS Authentication read: <a href="http://msdn.microsoft.com/en-us/library/azure/dn170477.aspx">Shared Access Signature Authentication with Service Bus</a> 
-
 In this part we will first generate the SAS Token, then you can paste the token string in your node.js code run on the tessel for authentication.
 
-
-* (Bullet one)
+* Get the SAS Token with GenerateSAS.exe
+The source code for this lab includes a C# Console application to generate the SAS Token.
+You can either just run the GenerateSAS.exe tool located in <folder-downloaded-the-labs>\tessel-azure-labs\labs\notification-hub\VSProject\GenerateSAS\bin\Debug
+OR
+You can open the project in Visual Studio, the .sln file is located in <folder-downloaded-the-labs>\tessel-azure-labs\labs\notification-hub\VSProject\ then build and run the GenerateSAS project.
 * (Bullet two)
   * (Bullet two point one)
   * (Bullet two point two)
