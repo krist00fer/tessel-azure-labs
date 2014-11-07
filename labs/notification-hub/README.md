@@ -75,7 +75,8 @@ The ambient_notificationhub_sas.js file contain two functions for sending notifi
 Lets take a look at the code for those two functions. In both cases the function gets a message and sends it as a push notification using the Notification Hub REST API.
 
 	
-	function sendNotification(message) {
+	function sendNotificationAndroid(message) {
+
 	
     var options = {
         hostname: NotificationHubNS,
@@ -85,17 +86,13 @@ Lets take a look at the code for those two functions. In both cases the function
         headers: {
             'Authorization': Key,
             'Content-Type': 'application/xml;charset=utf-8',
-            'ServiceBusNotification-Format' : 'windowsphone', 
-			'X-NotificationClass': '2', 
-			'X-WindowsPhone-Target': 'toast' 
+            'ServiceBusNotification-Format' : 'gcm', 
         }
     };
 
     var req = https.request(options, function (res) {
-        console.log("statusCode: ", res.statusCode);
-        console.log("headers: ", res.headers);
-		console.log("body: ", res.body);
-		
+        console.log("sendNotificationAndroid:statusCode: ", res.statusCode);
+        console.log("sendNotificationAndroid:headers: ", res.headers);	
 
 		res.setEncoding('utf8');
         res.on('data', function (d) {
@@ -107,12 +104,13 @@ Lets take a look at the code for those two functions. In both cases the function
         console.error(e);
     });
 	
-	var toast = '<?xml version="1.0" encoding="utf-8"?><wp:Notification xmlns:wp="WPNotification"><wp:Toast><wp:Text1>Hello from a Tessel.io!</wp:Text1></wp:Toast></wp:Notification>';   
-
-    req.write(toast);
+	var data = '{"data":{"message":"' + message + '"}}';
+	
+    req.write(data);
 
     req.end();
-    }
+
+}
 
 
 Summary
