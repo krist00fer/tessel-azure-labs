@@ -53,7 +53,10 @@ You can open the project in Visual Studio, the .sln file is located in <folder-d
 (Text in part two point two goes here)
 
 #### Part 3
-(Text in part three goes here)
+From this lab folder open the file Tessel\ambient_notificationhub_sas.js in a text editor.
+Please edit the details in lines 13-15 under the NotificationHub parameters section
+in line 13 edit your namespace, in line 14 edit your hub name.
+In line 15 paste your SAS Token you generated in part 2.1
 
 	
 	// NotificationHub Parameters
