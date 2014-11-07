@@ -31,7 +31,7 @@ In this lab we’re going to host a small service on Microsoft Azure Mobile Servic
 
 There are two components we need to setup in Azure to have everything working: storage and hosting.
 
-#### Setup a storage account
+#### Create a storage account
 
 During this part of the lab we are going to use the Azure-CLI (Azure x-Plat Tools), even though you can easily do the same thing using the management portal if you want to.
 
@@ -58,32 +58,78 @@ Sample output
 	data:    Secondary lo+nGo/W.....DATA-REMOVED-FROM-SAMPLE....Pt1orNXRnJjZA7g2w==
 	info:    storage account keys list command OK
 
-These keys, there are two equal valuable once, can only be accessed if you are administrator of the Azure Subscription that hosts the particular Storage Account and those keys should be handled with care. Don’t give them away to anyone you don’t trust and don’t save them on uncontrolled devices or clients. With any of these keys you have full control over that specific storage account. Copy and save the keys on your computer for now, we’ll be using them soon again. You can always retrieve the keys again later by executing the same command or though visiting the management portal. If you need to you can also create new keys, but that will invalidate any other keys already out there.
+These keys can only be accessed if you are administrator of the Azure Subscription that hosts the particular Storage Account and those keys should be handled with care. Don’t give them away to anyone you don’t trust and don’t save them on uncontrolled devices or clients. With any of these keys you have full control over that specific storage account. Copy and save the primary key to somewhere safe on your computer for now, we’ll be using it soon again. You can always retrieve the keys again later by executing the same command or though visiting the management portal. If you need to you can also create new keys, but that will invalidate any other keys already out there.
 
 Throughout this lab we’ll be calling into this Storage Account through some tools and mane of those tools (including Azure-CLI) accepts they name and key of your storage account as input parameters, but they also accept them saved in Environment Variables. The process of saving values in Environment Variables differs some through different operating systems and terminal/command windows/shells. Here are some examples and if you are using another operating system or shell, please search the Internet for information about how to set Environment Variables. Setting environment variables according to this will not persist your changes so if you open a new terminal/command window, restart your computer, etc. your information will be forgotten:
 
 	// Windows - Command Prompt
-	set <name> = <value>
+	> set <name> = <value>
 
 	// Windows – PowerShell
-	$env:<name> = <value>
+	> $env:<name> = <value>
+
+	// OS X (Mac) - Terminal
+	> export <name> = <value>
+
+	// Linux - Bash
+	> export <name> = <value>
 
 Set the Environment Variables: AZURE_STORAGE_ACCOUNT and AZURE_STORAGE_ACCESS_KEY to the name of your storage account and the access key to that storage account respectively.
 
 
 	// Windows – Command Prompt
-	set AZURE_STORAGE_ACCOUNT = <name>
-	set AZURE_STORAGE_ACCESS_KEY = <key>
+	> set AZURE_STORAGE_ACCOUNT = <storage-account>
+	> set AZURE_STORAGE_ACCESS_KEY = <key>
 
 	// Windows – PowerShell
-	$env:AZURE_STORAGE_ACCOUNT = <name>
-	$env:AZURE_STORAGE_ACCESS_KEY = <key>
+	> $env:AZURE_STORAGE_ACCOUNT = <storage-account>
+	> $env:AZURE_STORAGE_ACCESS_KEY = <key>
 
+	// OS X / Linux
+	> export AZURE_STORAGE_ACCOUNT = <storage-account>
+	> export AZURE_STORAGE_ACCESS_KEY = <key>
 
+If you by any reason don't succeed or don't want to set the Environment Variables you can also add the storage account name and key manually wherever that is needed, but from now on this lab description assumes the storage account name and key are set.
 
+#### Create and test table in Azure Table Storage
 
+Azure Table Storage is one of several sub storage systems in Azure Storage. In order to have the Tessel write directly to a table in the storage system we will pre-create the table and also introduce a small sample tool to read and write some test data from that table.
 
+Open a terminal/console window. Make sure you have downloaded/cloned/copied the contents of this lab locally on your computer and change directory to the "tool" directory.
 
+	cd tool
+
+In this directory you'll fine a Node.js app ([app.js](tool/app.js)). We are going to use this app, but first we need to install required Node Modules. The required Node Modules for this project are described in the [package.json](tool/package.json) file and Node.js provides an easy tool for downloading and installing those dependencies. Install the required module(s) by executing the following command
+
+	npm install
+
+If everything went according to plans you should now be able to execute the following command
+
+	> node app
+
+	Table Storage Tool, TST
+	  for lab: UPLOADING STRUCTURED DATA TO AZURE TABLE STORAGE
+
+	usage: node tst <create | insert | read | delete> [azureStorageAccount] [azureStorageAccessKey]
+
+	Azure storage access need to be provided as parameters or through the following environment
+	variables. Look-up how you set Environment Variables for your operating system or pass in
+	the credentials as parameters
+
+	Currently using:
+	  AZURE_STORAGE_ACCOUNT    : tesselazure
+	  AZURE_STORAGE_ACCESS_KEY : ZF2po8rCJk.....DATA-REMOVED-FROM-SAMPLE....4rrt5EN2lK1k2hA==
+
+We will use this tool during the rest of this lab to:
+
+* create table 'weatherlogs'
+* insert sample data in table 'weatherlogs'
+* read data from table 'weatherlogs'
+* delete table 'weatherlogs' and all data within
+
+If you have successfully set the Environment Variables AZURE_STORAGE_ACCOUNT and AZURE_STORAGE_ACCESS_KEY the values will be shown by the tool. If not, you can provide those parameters to this tool manually according to the shown syntax.
+
+Execute the following command to create a new Azure Table in your currently referenced storage account:
 
 
 

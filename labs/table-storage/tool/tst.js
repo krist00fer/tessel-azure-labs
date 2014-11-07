@@ -1,6 +1,6 @@
 var azure = require('azure-storage');
 
-var validCommands = ['setup', 'insert', 'read', 'delete'];
+var validCommands = ['create', 'insert', 'read', 'delete'];
 
 var command;
 
@@ -21,7 +21,7 @@ if (process.argv[4]) {
 } 
 
 if (command && process.env.AZURE_STORAGE_ACCOUNT && process.env.AZURE_STORAGE_ACCESS_KEY) {
-	if (command == 'setup') setupTable();
+	if (command == 'create') createTable();
 	if (command == 'insert') insertData();
 	if (command == 'read') readData();
 	if (command == 'delete') deleteTable();
@@ -38,10 +38,10 @@ else {
 	}
 
 	console.log();
-	console.log('Admin tool for lab:');
-	console.log('  -=UPLOADING STRUCTURED DATA TO AZURE TABLE STORAGE=-');
+	console.log('Table Storage Tool, TST');
+	console.log('  for lab: UPLOADING STRUCTURED DATA TO AZURE TABLE STORAGE');
 	console.log();
-	console.log('usage: node app <setup | read | delete> [azureStorageAccount] [azureStorageAccessKey]')
+	console.log('usage: node tst <create | insert | read | delete> [azureStorageAccount] [azureStorageAccessKey]')
 	console.log();
 	console.log('Azure storage access need to be provided as parameters or through the following environment');
 	console.log('variables. Look-up how you set Environment Variables for your operating system or pass in');
@@ -53,7 +53,7 @@ else {
 	console.log();
 }
 
-function setupTable() {
+function createTable() {
 	console.log();
 	console.log('Setting up table in Azure Tables');
 	console.log();
@@ -74,7 +74,7 @@ function setupTable() {
 	  } else {
 	  	// An error occured
 
-	  	console.log("Unable to setup table");
+	  	console.log("Unable to create table");
 	  	console.log(error);
 
 	  }
@@ -186,7 +186,7 @@ function deleteTable() {
 	tableService.deleteTable('weatherlogs', function(error, response){
 	  if(!error){
 
-	    	console.log('- table weatherlogs delete');
+	    	console.log('- table weatherlogs deleted');
 
 	  } else {
 	  	// An error occured
