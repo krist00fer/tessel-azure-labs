@@ -56,12 +56,6 @@ You can open the project in Visual Studio, the .sln file is located in <folder-d
   * When should this expire (MM/DD/YY HH, GMT)? empty value will set it for 10/31/2020 12:00
 * Copy the complete output string, this is your SAS Token. Save this string, you will have to paste it later in your node.js code
 
-#### Part 2.1
-(Text in part two point one goes here)
-
-#### Part 2.2
-(Text in part two point two goes here)
-
 ### Part 3 - Edit the ambient_notificationhub_sas.js file
 From this lab folder open the file Tessel\ambient_notificationhub_sas.js in a text editor.
 
