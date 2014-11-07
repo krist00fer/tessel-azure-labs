@@ -110,6 +110,22 @@ In both cases the function gets a message and sends it as a push notification us
     }
 
 
+#### Part 3.3 - Choose your own platform
+When something happens with sounds both sendNotificationAndroid and sendNotificationWP functions are being called.
+In case you are interested in sending notification only to Android or only to Windows Phone please put in comment the function you do not want to be called.
+
+	ambient.on('sound-trigger', function(data) {
+      console.log("Something happened with sound: ", data);
+      sendNotificationWP("Something happened with sound");
+	  sendNotificationAndroid("Something happened with sound");
+
+### Part 4 - running ambient_notificationhub_sas.js
+Open node.js command prompt and nevigate to the Tessel\ambient_notificationhub_sas.js. Make sure the tessel is connected to wifi by running: 
+
+	tessel wifi -l
+If tessel is not connected to wifi connect it using the command:
+
+	tessel wifi -n "network name" -p "password"
 
 Summary
 -------
