@@ -72,7 +72,8 @@ The ambient_notificationhub_sas.js file contain two functions for sending notifi
 * sendNotificationAndroid(message) - For sending push notifications to Android with GCM
 * sendNotificationWP(message) - For sending push notifications to Windows Phone with MPNS 
 
-Lets take a look at the code for those two functions. In both cases the function gets a message and sends it as a push notification using the Notification Hub REST API.
+
+In both cases the function gets a message and sends it as a push notification using the Notification Hub REST API. Lets take a look at the code for the sendNotificationAndroid function. 
 
 	
 	function sendNotificationAndroid(message) {
