@@ -19,7 +19,17 @@ In order to successfully complete this lab you need to:
 
 Instructions
 ------------
-(Describe the lab here. Divide the lab into logical parts in order for the participant to easily follow along. If possible, describe the steps in the lab using steps that are platform agnostic, i.e. it should work using whatever operating system you want. If possible use Azure-CLI to manage Windows Azure, but also explain how to use the portal if you feel it adds extra value or visibility. Remember that the portal(s) are changing faster than Azure-CLI, so the labs will be easier to maintain if we use Azure-CLI and since the Tessel's programming tools are used from the console, we might as well stick with it as much as possible. The preferred programming language on the server and client side should be JavaScript if possible in order to keep complexity of setup to a minimum.)
+In Part 1 of this lab you will make your first steps using Notification Hubs. You will learn how to create a new namespace for Notification Hub and configure it to work the push notification providers like GCM (Google Cloud Messaging) and MPNS (Microsoft Push Notification Service). Additionally you will create a mobile app that will register to the services and recive the push notifications. You can choose to build an Android app, a Windws Phone app or both.
+In part 2 of this lab you will create a SAS Token, later you will use this token to authenticate from the Tessel device to Notification Hub.
+In part 3 you will create the node.js code that will run on the Tessel device to send push notifications. In part 4 of this lab you will run the code and recive the notifications on your mobile phone.
+
+Please note in some cases reciving push notification is not avilable with running emulators and you will need to run your mobile app on a real mobile device.
+
+The source code for this lab contains two folders:
+* Tessel - the node.js code to run on the Tessel device.
+* VSProject - a Visual Studio solution with two projects:
+  * GeneratSAS to generate the SAS Token in part 2
+  * PhoneApp1 - a sample for a Windows Phone app registered to recieve push notifications
 
 ### Part 1 - Create the mobile app ready to recive push notification from Azure Notification Hub
 * For Android App follow instructions on: <a href="http://azure.microsoft.com/en-us/documentation/articles/notification-hubs-android-get-started/">Get started with Notification Hubs - Android</a>
@@ -148,21 +158,14 @@ When the app is running clap or make some noise near the tessel device. You shou
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
- 
-
-
 
 Summary
 -------
-(Include a short summary that explains what has been done during the lab. Use a couple of sentences, bullets and other, but don't explain the full lab once again)
+You have just created an Notification Hub inside of Service Bus and used it to send push notification to a mobile device, later you learned how to send a push notification message directly from the Tessel device using the Notification Hub REST API. 
 
-(OTHER - REMOVE THIS SECTION)
+Now, go ahead and play around with the solution. Think about all the notifications you can send from Tessel to mobile devices, you can use the GenerateSAS.exe tool to generate SAS token to additional Azure services like Service Bus Queues, Topics and Events Hub. Good luck!
+
+
+Additional Resources
 -----------------------------
 (Put whatever code files is needed for the lab directly in the lab's folder or if necessary in sub folders. Also update the main README.md file located in the "labs-folder" and link to this new lab. Make sure to spell check the lab using English US settings.)
