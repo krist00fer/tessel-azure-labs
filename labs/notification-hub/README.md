@@ -76,7 +76,6 @@ Lets take a look at the code for those two functions. In both cases the function
 
 	
 	function sendNotificationAndroid(message) {
-
 	
     var options = {
         hostname: NotificationHubNS,
@@ -105,12 +104,10 @@ Lets take a look at the code for those two functions. In both cases the function
     });
 	
 	var data = '{"data":{"message":"' + message + '"}}';
-	
     req.write(data);
-
     req.end();
+    }
 
-}
 
 
 Summary
