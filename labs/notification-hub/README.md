@@ -26,8 +26,12 @@ Instructions
 * For Windows Phine App follow instructions on: <a href="http://azure.microsoft.com/en-us/documentation/articles/notification-hubs-windows-phone-get-started/">Get started with Notification Hubs - Windows Phone</a>
 
 
-### Part 2
-(Text in part two goes here)
+### Part 2 - Get the SAS Token
+Applications can authenticate to Microsoft Azure Service Bus (including Notification Hubs) using either Shared Access Signature (SAS) authentication, or by authenticating through the Microsoft Azure Active Directory Access Control (also known as Access Control Service or ACS).
+For the simplicity we will use in this lab SAS authentication. For detail about SAS Authentication read: <a href="http://msdn.microsoft.com/en-us/library/azure/dn170477.aspx">Shared Access Signature Authentication with Service Bus</a> 
+
+In this part we will first generate the SAS Token, then you can paste the token string in your node.js code run on the tessel for authentication.
+
 
 * (Bullet one)
 * (Bullet two)
