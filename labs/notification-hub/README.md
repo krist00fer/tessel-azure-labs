@@ -1,6 +1,8 @@
-(Name of lab)
+Send Push Notification to Mobile with Notification Hubs
 =============
-(Enter a short description of what the lab will go through here. Approximately 5-10 sentences.)
+In this lab you will learn how to send push notification to a mobile device, Windows Phone or Android, directly from tessel.
+This lab demonstrate how to use Azure Notification Hub with the Notification Hubs REST API.
+This lab uses the tessel.io with the <a href="http://start.tessel.io/modules/ambient">ambient module</a>. We modified the ambient sample, when ever something happens with sound it will send a push notification to all registered mobile devices.
 
 Prerequisites
 -------------
