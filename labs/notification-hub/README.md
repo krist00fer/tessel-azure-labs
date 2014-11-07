@@ -38,9 +38,13 @@ You can either just run the GenerateSAS.exe tool located in <folder-downloaded-t
 OR
 You can open the project in Visual Studio, the .sln file is located in <folder-downloaded-the-labs>\tessel-azure-labs\labs\notification-hub\VSProject\ then build and run the GenerateSAS project.
 
-* (Bullet two)
-  * (Bullet two point one)
-  * (Bullet two point two)
+* You have to provide the following information:
+  * What is your service bus namespace? - this is your Service Bus namespace
+  * What is the path? - that is your hub name
+  * What existing shared access policy would you like to use to generate your SAS - set for DefaultFullSharedAccessSignature
+  * What is that policy's shared access key (primary or secondary)? - take this from the Azure portal, under Service Bus -> Notificatio Hubs -> your hub -> connection information. copy only the SharedAccessKey only copied from the value for your DefaultFullSharedAccessSignature.
+  * When should this expire (MM/DD/YY HH, GMT)? (press enter for 10/31/2020 12:00)
+* Copy the complete output string, this is your SAS Token. Save this string, you will have to paste it later in your node.js code
 
 #### Part 2.1
 (Text in part two point one goes here)
