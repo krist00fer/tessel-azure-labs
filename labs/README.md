@@ -43,9 +43,11 @@ Microsoft Azure provides an awesome place for you to host many kinds of operatin
 -------------------------------------------------------------------
 
 
-[Pub-Sub using Azure Event Hub](event-hub)
+[Telemetry Ingest using Azure Event Hub](event-hub)
 -----------------------------
+Many modern solutions that intend to provide adaptive customer experiences or to improve products through continuous feedback and automated telemetry are faced with the challenge of how to securely and reliably ingest very large amounts of information from many concurrent publishers. Microsoft Azure EventHubs is a managed platform service that provides a foundation for large-scale data ingestion in a broad variety of scenarios.
 
+You'll create an Azure EventHub using the Azure Portal or C# code. Afterwards we will ingest telemetry data from your Tessel microcontroller to the EventHub 
 
 [Communicating with a Node.js MQTT Server hosted on Azure](worker-roles)
 --------------------------------------------------------

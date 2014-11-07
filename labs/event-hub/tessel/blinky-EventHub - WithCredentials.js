@@ -8,11 +8,11 @@ console.log('Please ensure that you have created a Shared Access Signature Token
 console.log('----------------------------------------------------------------------');
 console.log(''); 
 
-var namespace = 'YourNameSpaceHere';
-var hubname ='YourHubNameHere';
+var namespace = 'RobEichDevEventHub-ns';
+var hubname ='demoeventhub';
 var partitionKey = 'mytessel';
-var eventHubAccessKeyName = 'YourEventHubKeyNameHere';
-var createdSAS = 'YourSharedAccessKeyTokenHere';
+var eventHubAccessKeyName = 'EventHubKey';
+var createdSAS = 'SharedAccessSignature sr=https%3A%2F%2FRobEichDevEventHub-ns.servicebus.windows.net%2Fdemoeventhub%2Fpublishers%2Fmytessel%2Fmessages&sig=cmwmWeUD%2FBvXC%2FnzgPqbe1Kx4TB8NrksSZrOQK%2FjbaA%3D&se=1417774602&skn=EventHubKey';
 
 console.log('Namespace: ' + namespace);
 console.log('hubname: ' + hubname);
