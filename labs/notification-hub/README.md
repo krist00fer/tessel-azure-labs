@@ -31,7 +31,7 @@ Applications can authenticate to Microsoft Azure Service Bus (including Notifica
 For the simplicity we will use in this lab SAS authentication. For detail about SAS Authentication read: <a href="http://msdn.microsoft.com/en-us/library/azure/dn170477.aspx">Shared Access Signature Authentication with Service Bus</a> 
 In this part we will first generate the SAS Token, then you can paste the token string in your node.js code run on the tessel for authentication.
 
-### Get the SAS Token with GenerateSAS.exe
+### Part 2.1 Get the SAS Token with GenerateSAS.exe
 
 The source code for this lab includes a C# Console application to generate the SAS Token.
 You can either just run the GenerateSAS.exe tool located in <folder-downloaded-the-labs>\tessel-azure-labs\labs\notification-hub\VSProject\GenerateSAS\bin\Debug
@@ -39,11 +39,11 @@ OR
 You can open the project in Visual Studio, the .sln file is located in <folder-downloaded-the-labs>\tessel-azure-labs\labs\notification-hub\VSProject\ then build and run the GenerateSAS project.
 
 * You have to provide the following information:
-  * What is your service bus namespace? - this is your Service Bus namespace
-  * What is the path? - that is your hub name
+  * What is your service bus namespace? this is your Service Bus namespace
+  * What is the path? this is your hub name
   * What existing shared access policy would you like to use to generate your SAS - set for DefaultFullSharedAccessSignature
-  * What is that policy's shared access key (primary or secondary)? - take this from the Azure portal, under Service Bus -> Notificatio Hubs -> your hub -> connection information. copy only the SharedAccessKey only copied from the value for your DefaultFullSharedAccessSignature.
-  * When should this expire (MM/DD/YY HH, GMT)? (press enter for 10/31/2020 12:00)
+  * What is that policy's shared access key (primary or secondary)? take this from the Azure portal, under Service Bus -> Notificatio Hubs -> your hub -> connection information. copy the SharedAccessKey part only copied from the value for your DefaultFullSharedAccessSignature.
+  * When should this expire (MM/DD/YY HH, GMT)? empty value will set it for 10/31/2020 12:00
 * Copy the complete output string, this is your SAS Token. Save this string, you will have to paste it later in your node.js code
 
 #### Part 2.1
