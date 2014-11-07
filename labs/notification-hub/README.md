@@ -127,6 +127,38 @@ If tessel is not connected to wifi connect it using the command:
 
 	tessel wifi -n "network name" -p "password"
 
+Run the ambient_notificationhub_sas.js
+
+	tessel run ambient_notificationhub_sas.js
+
+When the app is running clap or make some noise near the tessel device. You should get a push notification on your mobile device and the app should display the status code recived from calling the Notification Hub REST API.
+
+	sendNotificationWP:headers:  {
+	date : Fri, 07 Nov 2014 20:40:01 GMT,
+	transfer-encoding : chunked,
+	content-type : application/xml; charset=utf-8,
+	server : Microsoft-HTTPAPI/2.0
+	}
+	sendNotificationAndroid:statusCode:  201
+	sendNotificationAndroid:headers:  {
+	date : Fri, 07 Nov 2014 20:40:03 GMT,
+	transfer-encoding : chunked,
+	content-type : application/xml; charset=utf-8,
+	server : Microsoft-HTTPAPI/2.0
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+ 
+
+
+
 Summary
 -------
 (Include a short summary that explains what has been done during the lab. Use a couple of sentences, bullets and other, but don't explain the full lab once again)
