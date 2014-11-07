@@ -10,7 +10,7 @@ Prerequisites
 In order to successfully complete this lab you need to:
 
 * Have successfully setup your Azure Subscription, your development environment and your Tessel according to instructions outlined in the [Setup Lab](../_setup).
-* <a href="http://start.tessel.io/modules/ambient">ambient module</a>
+* You have a tessel ambient module and its configured acording to: <a href="http://start.tessel.io/modules/ambient">Tessel ambient module</a>
 * For Android App:
 	* Google Developers Account (Only in case of the chossing Android App, for Windows Phone app we will use 		unauthenticated push notifications)
 	* Eclipse with Android SDK
@@ -23,7 +23,7 @@ Instructions
 
 ### Part 1 - Create the mobile app ready to recive push notification from Azure Notification Hub
 * For Android App follow instructions on: <a href="http://azure.microsoft.com/en-us/documentation/articles/notification-hubs-android-get-started/">Get started with Notification Hubs - Android</a>
-* For Windows Phine App follow instructions on: <a href="http://azure.microsoft.com/en-us/documentation/articles/notification-hubs-windows-phone-get-started/">Get started with Notification Hubs - Windows Phone</a>
+* For Windows Phone App follow instructions on: <a href="http://azure.microsoft.com/en-us/documentation/articles/notification-hubs-windows-phone-get-started/">Get started with Notification Hubs - Windows Phone</a>
 
 
 ### Part 2 - Get the SAS Token
@@ -68,7 +68,11 @@ In line 15 paste your SAS Token you generated in part 2.1
 
 
 #### Part 3.2 - Look at the sendNotification function
-In the ambient_notificationhub_sas.js file, go to the code for the sendNotification function. This functions gets a message and sends it as a push notification to Windows Phone mobile device using the Notification Hub REST API.
+The ambient_notificationhub_sas.js file contain two functions for sending notifications:
+* sendNotificationAndroid(message) - For sending push notifications to Android with GCM
+* sendNotificationWP(message) - For sending push notifications to Windows Phone with MPNS 
+
+Lets take a look at the code for those two functions. In both cases the function gets a message and sends it as a push notification using the Notification Hub REST API.
 
 	
 	function sendNotification(message) {
