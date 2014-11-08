@@ -1,4 +1,4 @@
-Calling a REST API from your Tessel running in a Docker container on Linux hosted in an Azure VM.
+Calling a REST API, running in a Docker container on Linux hosted in an Azure VM, directly from your Tessel.
 =============
 Docker is a tool to manage Linux containers. Containers are processes that have isolated storage, networking and compute resources. Docker is the client tool to create, extend, run and deploy containers. Containers offer a runtime for web applications, services, databases, whatever you can run on Linux (and soon also on Windows). 
 
@@ -23,21 +23,19 @@ Prerequisites
 In order to successfully complete this lab you need to:
 
 * Have successfully setup your Azure Subscription, your development environment and your Tessel according to instructions outlined in the [Setup Lab](../_setup).
-* Download the 
-* (Add other prerequisites here)
-* (If the lab uses features, tools or languages that are only available on certain operating systems make sure you specify them here, i.e. PowerShell, Visual Studio, C#, etc.)
-* (...)
+* Optionally: Have your own Linux machine or Linux VM available if you prefer a local client.
 
 Instructions
 ------------
-### Part 1: First we need to go to the Azure portal to run our Client VM.
+### Setup a client VM
 * Create Linux VM.
+![Portal Screenshot](images/portal.png)
 * Install Node, NPM and the xplat CLI
 * Install Docker
 * Confirm that Docker is installed buy running 'sudo docker version' (just run 'sudo docker' to see all the commands supported).
 
 
-### Part 2: Provision our container host in Azure
+### Provision a container host in Azure
 Now we have the client tools up and running we want to provision a VM that will act as our Container host. You could also run the Containers locally ofcourse, but in this lab we want to leverage the power of Azure to handle that task on potentialy huge numbers of VM's ranging from small (and very cheap) to mega ships of containers, that's where Docker got its name from.
 
 * Check the installation of the x-plat CLI tools by typing 'azure' in the client console.
@@ -49,7 +47,7 @@ Now we have the client tools up and running we want to provision a VM that will 
 After a couple of minutes, we have our host VM running,a storage account for the host VM VHD file, and the certificates for running the Daemon and have it listen to port 4243.
 
 
-#### Part 3: Building & running a container image 
+#### Building & running a container image 
 After a couple of minutes, we have our host VM running,a storage account for the host VM VHD file, and the certificates for running the Daemon and have it listen to port 4243.
 
 * Make sure the host VM is available by visiting portal.azure.com and klik the browse button to go to the list of running VM. Select the VM with the hostname we used in the 'azure vm docker create command (step B5). Also note both endpoints created from the command and the CLI tools and the Docker extension.
@@ -58,7 +56,7 @@ After a couple of minutes, we have our host VM running,a storage account for the
 
 We could use the tls command also to setup an image for our container on but a better approach would be to define a Dockerfile and let Docker manage the creation of the image. The Dockerfile instructs Docker what base image should be used and what command it must execute on top of the base image to create additional layers that ultimately make up the image that has all the parts our app needs to run. In our case this will be Node, NPM (the Node package manager) and our application script files.
 
-#### Part 4:Running the Web API and connecting up the Tessel client
+#### Running the Web API and connecting up the Tessel client
 * Create the Dockerfile
 * Let Docker build the image
 * Run the image
@@ -71,7 +69,7 @@ We could use the tls command also to setup an image for our container on but a b
 
 	code.indent(tab); // Indent code with 4 spaces (or tab) to have it appear as code
 
-#### Part 4: Calling the service from a Tessel.
+#### Calling the service from a Tessel.
 
 Summary
 -------
