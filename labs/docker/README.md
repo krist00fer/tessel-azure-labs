@@ -2,21 +2,21 @@ Calling a REST API, running in a Docker container on Linux hosted in an Azure VM
 =============
 Docker is a tool to manage Linux containers. Containers are processes that have isolated storage, networking and compute resources. Docker is the client tool to create, extend, run and deploy containers. Containers offer a runtime for web applications, services, databases, whatever you can run on Linux (and soon also on Windows). 
 
-Containers are run from Docker images (just like a VM has as a source image file). U can write setup files called Dockerfiles that instruct Docker which steps and commands it should run to build up the image.
+Containers are run from Docker images (just like a VM has as a source image file). You can write setup files called Dockerfiles that instruct Docker which steps and commands it should run to build up the image.
 
-Why care about Containers and Docker? Docker makes it very simple to setup environments and make efficient use of the resource a VM has to offer. Once you have a host VM running you can run containers init that startup very fast (think sub-second!).
+Why care about Containers and Docker? Docker makes it very simple to setup environments and make efficient use of the resource a VM has to offer. Once you have a host VM running you can run any number of containers on it that can startup very fast (think sub-second!).
 
 Why would I want to run my host VM on Azure?
-With Microsoft Azure you get a robust platform that let's you (auto)scale you deployments to any size you need with first class tooling (like Powershell, Puppet, Chef, DSC etc.) and high availability features  build right in for both storage and compute. With Azure you also setup for a 99,95% SLA.
+With Microsoft Azure you get a robust platform that let's you (auto)scale you deployments to any size you need with first class tooling (like Powershell, Puppet, Chef, DSC etc.) and high availability features build right in for both storage and compute. With Azure you also setup for a 99,95% SLA.
 
 So the three selling point for Docker are:
-* Simplified deployment: Make your images and distribute them within your organisation to run on any machine on any platform that has a modern Linux kernel running, again, a Windows version is coming.
+* Simplified deployment: Make your images and distribute them within your organization to run on any machine on any platform that has a modern Linux kernel running, again, a Windows version is coming.
 * Efficient use of resources: Instead of using a VMs as the computing unit we can host multiple Containers in a VM that each act as isolated pseudo VMs.
-* Since the VM kernel is shared amongst containers they can run instantly and have a very small footprint needing only you application's files and the packages that it depends on.
+* Since the VM kernel is shared amongst containers they can run instantly and have a very small footprint needing only your application's files and the packages that it depends on.
 
-Microsoft Azure has full blown support for Linux VM's and therefore is an excellent environment to host container. We have built-in support for docker in our cross platform command line tools so setting up Docker hosts on Azure is very easy.
+Microsoft Azure has full blown support for Linux VM's and therefore is an excellent environment to host containers. We have built-in support for docker in our cross platform command line tools so setting up Docker hosts on Azure is very easy.
 
-In this lab we will go through the proces of running a Docker client Linux VM in Azure (or you can use you local Lunix environment if have have one already) and provisioning Docker host VM's in which will run Docker containers. In one of these containers we will run the Web API services created in the 'Websites' lab.
+In this lab we will go through the proces of running a Docker client Linux VM in Azure (or you can use your local Linux environment if have have one already) and provisioning Docker host VM's in which we will run Docker containers. In one of these containers we will run the REST API service created in the 'Websites' lab.
 
 Prerequisites
 -------------
@@ -56,7 +56,7 @@ After a couple of minutes, we have our host VM running,a storage account for the
 
 We could use the tls command also to setup an image for our container on but a better approach would be to define a Dockerfile and let Docker manage the creation of the image. The Dockerfile instructs Docker what base image should be used and what command it must execute on top of the base image to create additional layers that ultimately make up the image that has all the parts our app needs to run. In our case this will be Node, NPM (the Node package manager) and our application script files.
 
-#### Running the Web API and connecting up the Tessel client
+#### Running the REST API and connecting up the Tessel client
 * Create the Dockerfile
 * Let Docker build the image
 * Run the image
