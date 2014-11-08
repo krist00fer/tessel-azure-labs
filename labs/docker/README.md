@@ -10,9 +10,9 @@ Why would I want to run my host VM on Azure?
 With Microsoft Azure you get a robust platform that let's you (auto)scale you deployments to any size you need with first class tooling (like Powershell, Puppet, Chef, DSC etc.) and high availability features  build right in for both storage and compute. With Azure you also setup for a 99,95% SLA.
 
 So the three selling point for Docker are:
-1. Simplified deployment: Make your images and distribute them within your organisation to run on any machine on any platform that has a modern Linux kernel running, again, a Windows version is coming.
-2. Efficient use of resources: Instead of using a VMs as the computing unit we can host multiple Containers in a VM that each act as isolated pseudo VMs.
-3. Since the VM kernel is shared amongst containers they can run instantly and have a very small footprint needing only you application's files and the packages that it depends on.
+* Simplified deployment: Make your images and distribute them within your organisation to run on any machine on any platform that has a modern Linux kernel running, again, a Windows version is coming.
+* Efficient use of resources: Instead of using a VMs as the computing unit we can host multiple Containers in a VM that each act as isolated pseudo VMs.
+* Since the VM kernel is shared amongst containers they can run instantly and have a very small footprint needing only you application's files and the packages that it depends on.
 
 Microsoft Azure has full blown support for Linux VM's and therefore is an excellent environment to host container. We have built-in support for docker in our cross platform command line tools so setting up Docker hosts on Azure is very easy.
 
