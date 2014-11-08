@@ -1,0 +1,13 @@
+{
+  "name": "tessel-websites",
+  "version": "0.1.0",
+  "description": "Connects a Tessel device with a custom RESTful API, hosted in Azure Websites",
+  "main": "blinky-websites.js",
+  "scripts": {
+  },
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {}
+}
