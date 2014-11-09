@@ -8,7 +8,7 @@ var host = 'tesselazure.table.core.windows.net';
 // 	'secondaryHost':'https://tesselazure-secondary.table.core.windows.net:443/'
 // };
 var sas = 
-	'se=2014-11-09T04%3A00%3A40Z&sp=a&sv=2014-02-14&tn=weatherlogs&sig=iPGaX%2BDSIatADSesVkJ5hD5vZKkUYl89QVQ4iMO0k3Q%3D';
+	'se=2014-11-09T14%3A09%3A46Z&sp=a&sv=2014-02-14&tn=weatherlogs&sig=MwsXCdXK2dJ2jPLTHeLYJNeO669GvjnevVYiVBUAp%2FM%3D';
 
 // AZURE_STORAGE_ACCOUNT = tesselazure
 // AZURE_STORAGE_ACCESS_KEY = ZF2po8rCJkgLPDCpdAzSYtL0gqwoJDPuqhnX16706+MbRh2wl0dJYb4NfznnxJ77TlPqRro4rrt5EN2lK1k2hA==
