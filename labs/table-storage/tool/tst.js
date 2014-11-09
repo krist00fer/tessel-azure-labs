@@ -154,12 +154,12 @@ function readData() {
 			{
 				console.log('Table weatherlogs does not contain any entries');
 			} else {
-				console.log('PartitionKey\t\t\tRowKey\t\tTemperature\tHumidity');
+				console.log('PartitionKey\t\t\t\t\tRowKey\tTemperature\tHumidity');
 				console.log();
 
 				result.entries.forEach(function (value, index, arr) {
 
-					console.log(value.PartitionKey._ + '\t\t' + value.RowKey._ + '\t' + 
+					console.log(value.PartitionKey._ + '\t' + value.RowKey._ + '\t' + 
 						value.Temperature._ + '\t\t' + value.Humidity._);
 				});
 			}

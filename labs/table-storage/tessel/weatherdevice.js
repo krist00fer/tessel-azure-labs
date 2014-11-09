@@ -1,6 +1,19 @@
+console.log('tessel');
 var tessel = require('tessel');
+
+console.log('https');
 var https = require('https');
+
+console.log('ntp-client');
 var ntp = require('ntp-client');
+
+console.log('azure-storage');
+var azure = require('azure-storage');
+
+// console.log('azure-table-node');
+// var azureTable = require('azure-table-node');
+
+console.log('all required!!!');
 
 // http://<mymobileservicename>.azure-mobile.net/api/table_connection_info?deviceId=<deviceId>
 var apiUrl = "https://tesselazuremobile.azure-mobile.net/api/weatherconfig";
@@ -8,10 +21,11 @@ var firstConfig = true;
 
 // Constants
 var apiCallLed = 0;
-var tableCallLed = 1;
+var uploadLed = 1;
 var minRetryDelay = 3000;
 var maxRetryDelay = 15000;
 var secondsPerDay = 24*60*60; // 24h x 60 min x 60 sec = 86400
+var tableName = 'weatherlogs';
 
 var deviceId = tessel.deviceId();
 var config;
@@ -22,6 +36,57 @@ setImmediate(updateConnectionInfo);
 
 function startMeasurementsAndUploads() {
 	setImmediate(measure);
+	setTimeout(uploadData, config.uploadPeriod * 1000);
+}
+
+function uploadData() {
+
+	if (connfig) {
+
+		// config.log('create table client');
+		// var tableClient = azureTable.createClient({
+		// 	accountUrl: config.host.primaryHost,
+		// 	sas: config.sas
+		// });
+
+		config.log('creating tableservice obj');
+		var tableService = azure.createTableServiceWithSas(config.host, config.sas);
+		config.log('INFO Uploading', measurements.length, 'measurements to Azure Tables');
+
+		while (measurements.length > 0) {
+			setLed(uploadLed, true);
+
+			// Get first measurement from array
+			var weatherLog = measurements.shift();
+			// Upload measurement in Azure Table Storage
+			tableService.insertEntity(tableName, weatherLog, function (error, result, response) {
+				if (!error) {
+					console.log('lycka!!!');
+				} else {
+					// An error occurred, so let's put back the measurements in the back of the array
+					measurements.push(weatherLog);
+					console.error('ERROR uploadData() Unable to call Azure Tables.');
+				}
+			});
+
+			// tableClient.insert(tableName, weatherLog, function(error, data) {
+			// 	console.log('cb');
+
+			// 	if (!error) {
+			// 		console.log('yeah');
+			// 	} else {
+			// 		console.log('error');
+			// 		console.log(error);
+			// 	}
+
+			setLed(uploadLed, false);
+		}
+
+	} else {
+		var delay = getRandomRetryDelay();
+		console.error('ERROR uploadData() No configuration set. Trying again in', delay, 'ms');
+		setTimeout(measure, delay);
+	}
 }
 
 function measure() {
@@ -39,6 +104,19 @@ function measure() {
 		    	var rowKey = getRowKey(date);
 		    	var temperature = getTemperature();
 		    	var humidity = getHumidity();
+
+		    	// Construct Azure Tables Entity
+		    	// EntityGenerator will help us be specific of types, that will otherwise be inferred
+		    	// var entGen = azure.TableUtilities.entityGenerator;
+
+		    	// var weatherLog = {
+		    	// 	PartitionKey: entGen.String('partitionKey'),
+		    	// 	RowKey: entGen.String('rowKey'),
+		    	// 	Temperature: entGen.Int32(temperature),
+		    	// 	Humidity: entGen.Int32(humidity),
+		    	// 	MeasuredAt: entGen.DateTime(date)
+		    	// };
+
 
 		    	var weatherLog = {
 		    		PartitionKey: partitionKey,
@@ -73,6 +151,20 @@ function measure() {
 		setTimeout(measure, delay);
 	}
 }
+
+// function insertEntity(tableName, weatherLog) {
+// 	var options = {
+// 		hostname: config.host.primaryHost,
+// 		port: 443,
+// 		path: '/' + tableName + config.sas,
+// 		method: 'POST',
+// 		headers: {
+// 			'Content-Length': 9999,
+// 			''
+// 		}
+// 	}
+// }
+
 
 function updateConnectionInfo() {
 
