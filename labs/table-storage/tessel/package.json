@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "azure-table-node": "^1.4.1",
     "ntp-client": "^0.5.3"
   }
 }
