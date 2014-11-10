@@ -33,14 +33,14 @@ Instructions
 ------------
 ### Setup a client VM
 * Use PuttyGen to generate a SSH key and a derived key file. We will use these to setup and connect our VM later on.
+![Portal gallery](images/PuttyGen.png)
  
-* Create a Linux VM by going to the Microsoft Azure portal at portal.azure.com. Click on the plus icon in the [Azure portal] and select the 'Virtual machines' category. 
+* Create a Linux VM by going to the Microsoft [Azure portal]. Click on the plus icon in lower left corner and select the 'Virtual machines' category. 
 
 * In the list select 'Everything' so we can use the search feature to look for 'Ubuntu'. This will display all Ubuntu VM images available. Select the one with '14.04 LTS' in its name.
 ![Portal gallery](images/UbuntuFound.png)
 
 * Configure the VM in the portal wizard so that it is hosted in a nearby region and has the SSH key configured we generated earlier.
-* Open port 80 & 9000
 * Wait a couple of minutes for the VM to be ready.
 ![VM Starting](images/VMStarting.png)
 
@@ -69,42 +69,45 @@ Let's kick off by running a container using this command:
 
 This last command downloads a standard ubuntu image from the public Docker hub and runs it in a container that is hooked up to the terminal by the '/bin/bash' parameter. Confirm this by checking the prompt stating 'root@[SOME CONTAINERID]'.  
 
-### Optional: Using the Azure CLI tools from a Linux VM
-* We can use this Linux VM, instead of our local machine. To use this approach we can create an organizational account in Azure Active Directory and use that to login as an Azure co-admin.
+We now have a container running on Azure. Our next step is to build our own image and turn the container running from that image into a Node.js server serving our REST API to the Tessel.
 
-Use the next command to install the Azure CLI on the VM.
+### Optional: Using the Azure CLI tools from a Linux VM
+* We can use this Linux VM, instead of our local machine, also to manage Azure. To use this approach we must create an organizational account in Azure Active Directory and setup that to user as an Azure co-admin.
+
+Use the next command to install the Azure CLI on the VM or skip this step if you have a local VM running you want to use.
 
     sudo npm install -g azure-cli
 
 * Confirm correct installation using the 'azure' command. 
+![Docker installed](images/AzureCLI.png)
 * Login with 'azure login [USERNAME] [PASSWORD]'.
-* Use the Linux VM terminal to run the Azure CLI commands mentioned during the rest of the lab.
+* Use this terminal to run the Azure CLI commands mentioned during the rest of the lab.
 
 ### Provision a container host in Azure
 Now we have the client tools up and running we want to provision a VM that will act as our Container host. You could also run the Containers locally ofcourse, but in this lab we want to leverage the power of Azure to handle that task on potentialy huge numbers of VMs ranging from small to mega ships of containers, that's where Docker got its name from. To prevent us from having to use the web portal for provisioning virtual machines we use the Azure Cross-Platform Command-Line Interface to handle this from a single command.
 
-* Check the installation of the Azure CLI tools by running 'azure' in the client console.
+* Check the installation of the Azure CLI tools by running 'azure' in the terminal.
 
-Make sure you are logged into the Azure portal using the account that is coupled to the subscription you want to use for this lab and run the following command to download the publish settings file. 
+Make sure you are logged into the Azure portal using the account that is coupled to the subscription you want to use for this lab and run the following command to download the publish settings file containing the subscriptiong belonging to that account. 
 
     azure account download
 
 If the browser does not start click [this link] to download it manually.
-Run the statement below to get access to your Azure subscription.
+Run the statement below to get access to your Azure subscription using the path to the publish settings file.
 
     azure account import [path to .publishsettings file]
     
 List available Ubuntu images by running:
 
-    azure vm image list | grep 14_04'
+    azure vm image list | grep 14_04
 
-We filter the list so we only see the latest 14.04 versions of the Ubuntu LTS release that are available in azure.
+We filter the list so we only see the latest 14.04 versions of the Ubuntu LTS release that are available in Azure.
 
-Copy the image name of the latest daily build, we will this in our next command the base the container host VM on.
+Copy the image name of the latest daily build, we will use this in our next command to base the container host VM on.
 
 Enter the command below to create the VM. The 'docker' option instructs Azure to prefit the VM with the Docker components and a docker daemon (background service). -e is the endpoint on port 22, -l is the location 'West Europe' or any region closeby.
 
-    azure vm docker create -e 22 -l "West Europe" vmhostname "vmimagename"
+    azure vm docker create -e 22 -l "West Europe" [HOSTIMAGENAME] "[VMHOSTNAME]"
 
 After a couple of minutes, we have our host VM running, a storage account for the host VM VHD file, and the certificates for running the Daemon (background service) and have it listen to port 4243.
 
@@ -147,6 +150,8 @@ Paste the following script in the Dockerfile:
 	RUN chmod +x /tmp/start.sh
 
 	CMD ./tmp/start.sh
+	
+Save the content of the file by pressing CTRL-O and exit pressing CTRL-X
 
 Add another file called start.sh. The commands in this script file are not cached by Docker (due to the CMD line in the Dockerfile) so we can update these steps faster since they will be executing on every 'run' command as we'il see later on.
 
@@ -168,31 +173,22 @@ Insert the following snippet in the start.sh file. Replace the GITREPO tag with 
 
 	node .
 
-Run the build proces by initiating the docker 'build' command:
+Save the content of the file by pressing CTRL-O and exit pressing CTRL-X.
+
+Run the build proces by initiating the docker 'build' command. Mark the . at the end stating the current directory contains the Dockerfile:
 
 	docker build -t myname/my-nodejs-webserver .
 
-You will see in the terminal that the scripts are executed. The script does the following:
-* Build on top of the standard Ubuntu image
+You will see in the terminal that the script is being executed. The script does the following:
+* Grab and build on top of the standard Ubuntu image
 * Update the package manager in that image
 * Install Node.js, NPM and Git
-* Add the start.sh file to a temp folder IN the container image.
+* Add the start.sh file to a temp folder in the container image
 * Remove and clone the Git repository containing our REST API code
 
 #### Running the REST API and connecting up the Tessel client
-* Create the Dockerfile
-* Let Docker build the image
-* Run the image
-* Setup the Tessel to call the API running in the container.
 
-	// Use comments in code only if code is otherwise confusing.
-	// We want the code to be as good and clean written that it
-	// is self-explanatory and doesn't need comments. Still don't
-	// be afraid to use comments if needed.
-
-	code.indent(tab); // Indent code with 4 spaces (or tab) to have it appear as code
-
-#### Calling the service from a Tessel.
+Now we have our REST API running in the Container host on Azure we can setup the Tessel to call it.
 
 Summary
 -------
