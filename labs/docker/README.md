@@ -34,10 +34,9 @@ Instructions
 ### Setup a client VM
 * Use PuttyGen to generate a SSH key and a derived key file. We will use these to setup and connect our VM later on.
  
-* Create a Linux VM by going to the Microsoft Azure portal at portal.azure.com. Click on the plus icon in the portal. 
-![Portal menu](images/PortalMenu.png)
+* Create a Linux VM by going to the Microsoft Azure portal at portal.azure.com. Click on the plus icon in the [Azure portal] and select the 'Virtual machines' category. 
 
-* Select 'Everything' so we can use the search feature to look for 'Ubuntu'. This will display all Ubuntu VM images available. Select the one with '14.04 LTS' in its name.
+* In the list select 'Everything' so we can use the search feature to look for 'Ubuntu'. This will display all Ubuntu VM images available. Select the one with '14.04 LTS' in its name.
 ![Portal gallery](images/UbuntuFound.png)
 
 * Configure the VM in the portal wizard so that it is hosted in a nearby region and has the SSH key configured we generated earlier.
