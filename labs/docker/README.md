@@ -43,9 +43,11 @@ Instructions
 * Connect to the Linux VM via Putty. 
 ![VM Starting](images/LinuxClient.png)
 * Update the package manager in the VM and install Node.js using the following commands:
+
     sudo apt-get update
     sudo apt-get install nodejs-legacy
     sudo apt-get install npm
+
 * Install Docker by running: 
     sudo apt-get install docker.io
 * Confirm that Docker is installed buy running the command below  (use 'sudo docker' to see all the commands supported).
