@@ -64,7 +64,7 @@ Install Docker by running:
     sudo docker version
 ![Docker installed](images/DockerInstalled.png)
 
-Let's kick of by running a container using this command:
+Let's kick off by running a container using this command:
 
     sudo docker run -i -t ubuntu /bin/bash 
 
@@ -105,7 +105,7 @@ Copy the image name of the latest daily build, we will this in our next command 
 
 Enter the command below to create the VM. The 'docker' option instructs Azure to prefit the VM with the Docker components and a docker daemon (background service). -e is the endpoint on port 22, -l is the location 'West Europe' or any region closeby.
 
-    azure vm docker create -e 22 -l 'West Europe' vmhostname 'vmimagename'
+    azure vm docker create -e 22 -l "West Europe" vmhostname "vmimagename"
 
 After a couple of minutes, we have our host VM running, a storage account for the host VM VHD file, and the certificates for running the Daemon (background service) and have it listen to port 4243.
 
@@ -124,7 +124,7 @@ This adds the endpoint for HTTP traffic through TCP port 80. You can check the p
 
 The --tls parameter lets us run a command on the host VM from the client console/terminal and this works because we already have the necessary certificates setup.
 
-We could use the tls command also to setup an image for our container on but a better approach would be to define a Dockerfile and let Docker manage the creation of the image. The Dockerfile instructs Docker what base image should be used and what command it must execute on top of the base image to create additional layers that ultimately make up the image that has all the parts our app needs to run. In our case this will be Node, NPM (the Node package manager) and our application script files.
+We could use the tls command also to setup an image for our container on but a better approach would be to define a Dockerfile and let Docker manage the creation of the image. The Dockerfile instructs Docker what base image should be used and what command it must execute on top of the base image to create additional layers that ultimately make up the image that has all the parts our app needs to run. In our case this will be Node.js, NPM (the Node.js package manager) and our application script files.
 
 Create a file named 'Dockerfile' (we use PICO as our texteditor):
 
@@ -140,7 +140,7 @@ Paste the following script in the Dockerfile:
 	# make sure apt is up to date
 	RUN apt-get update
 
-	# install nodejs and npm
+	# install Node.js and npm
 	RUN apt-get install -y nodejs npm git git-core
 
 	ADD start.sh /tmp/
@@ -149,12 +149,12 @@ Paste the following script in the Dockerfile:
 
 	CMD ./tmp/start.sh
 
-Add another file called start.sh. This script file can be edited without the need to rebuild the container image.
+Add another file called start.sh. The commands in this script file are not cached by Docker (due to the CMD line in the Dockerfile) so we can update these steps faster since they will be executing on every 'run' command as we'il see later on.
 
 	cat > start.sh
 	pico start.sh
 	
-Insert the following snippet in the start.sh file. Replace the GITREPO tag with the GIT repository URL (https://github.com/[name]/[REPO].git) that contains the REST API code for our Node application.
+Insert the following snippet in the start.sh file. Replace the GITREPO tag with the GIT repository URL (https://github.com/[name]/[REPO].git) that contains the REST API code for our Node.js application.
 
 	cd /tmp
 
@@ -169,6 +169,16 @@ Insert the following snippet in the start.sh file. Replace the GITREPO tag with 
 
 	node .
 
+Run the build proces by initiating the docker 'build' command:
+
+	docker build -t myname/my-nodejs-webserver .
+
+You will see in the terminal that the scripts are executed. The script does the following:
+* Build on top of the standard Ubuntu image
+* Update the package manager in that image
+* Install Node.js, NPM and Git
+* Add the start.sh file to a temp folder IN the container image.
+* Remove and clone the Git repository containing our REST API code
 
 #### Running the REST API and connecting up the Tessel client
 * Create the Dockerfile
