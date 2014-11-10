@@ -18,6 +18,8 @@ Microsoft Azure has full blown support for Linux VM's and therefore is an excell
 
 In this lab we will go through the proces of running a Docker client Linux VM in Azure (or you can use your local Linux environment if have have one already) and provisioning Docker host VM's in which we will run Docker containers. In one of these containers we will run the REST API service created in the 'Websites' lab.
 
+	some line of code
+
 Prerequisites
 -------------
 In order to successfully complete this lab you need to:
@@ -29,31 +31,39 @@ Instructions
 ------------
 ### Setup a client VM
 * Use PuttyGen to generate a SSH key and a derived key file. We will use these to setup and connect our VM later on.
+ 
 * Create a Linux VM by going to the Microsoft Azure portal at portal.azure.com. Click on the plus icon in the portal. 
 ![Portal menu](images/PortalMenu.png)
-* Select 'Everything' so we van use the search feature to look for 'Ubuntu'. This will display all Ubuntu VM images available. Select the one with '14.04 LTS' in its name.
+
+* Select 'Everything' so we can use the search feature to look for 'Ubuntu'. This will display all Ubuntu VM images available. Select the one with '14.04 LTS' in its name.
 ![Portal gallery](images/UbuntuFound.png)
+
 * Configure the VM in the portal wizard so that it is hosted in a nearby region and has the SSH key configured we generated earlier.
-![VM Settings](images/VMSettings.png)
-* [Open port 80 & 9000]
+* Open port 80 & 9000
 * Wait a couple of minutes for the VM to be ready.
 ![VM Starting](images/VMStarting.png)
-* Once the VM get's the 'Running' status use Putty to connect to the VM by selecting the private key file in the Configuration/Connection/SSH/Auth box and entering the host name including the '.cloudapp.net' extensions.
+
+* Once the VM gets the 'Running' status use Putty to connect to the VM by selecting the private key file in the Category/Connection/SSH/Auth box and entering the host name including the '.cloudapp.net' extensions.
 ![VM Starting](images/Putty.png)
+
 * Connect to the Linux VM via Putty. 
 ![VM Starting](images/LinuxClient.png)
-* Update the package manager in the VM and install Node.js using the following commands:
 
-    sudo apt-get update
+Update the package manager in the VM and install Node.js using the following commands:
+
     sudo apt-get install nodejs-legacy
     sudo apt-get install npm
 
-* Install Docker by running: 
+Install Docker by running: 
+
     sudo apt-get install docker.io
+    
 * Confirm that Docker is installed buy running the command below  (use 'sudo docker' to see all the commands supported).
     sudo docker version
 ![Docker installed](images/DockerInstalled.png)
-* Let's kick of by running a container using this command: 
+
+Let's kick of by running a container using this command:
+
     sudo docker run -i -t ubuntu /bin/bash 
 
 This last command downloads a standard ubuntu image from the public Docker hub and runs it in a container that is hooked up to the terminal by the '/bin/bash' parameter. Confirm this by checking the prompt stating 'root@[SOME CONTAINERID]'.  
@@ -70,19 +80,26 @@ This last command downloads a standard ubuntu image from the public Docker hub a
 Now we have the client tools up and running we want to provision a VM that will act as our Container host. You could also run the Containers locally ofcourse, but in this lab we want to leverage the power of Azure to handle that task on potentialy huge numbers of VMs ranging from small to mega ships of containers, that's where Docker got its name from. To prevent us from having to use the web portal for provisioning virtual machines we use the Azure Cross-Platform Command-Line Interface to handle this from a single command.
 
 * Check the installation of the x-plat CLI tools by running 'azure' in the client console.
-* Make sure you are logged into the Azure portal using the account that is coupled to the subscription you want to use for this lab and run the following command to download the publish settings file. 
-    azure account download
-* If the browser does not start click [this link] to download it manually.
-* Run the statement below to get access to your Azure subscription.
-    azure account import [path to .publishsettings file]
 
-* List available Ubuntu images by running:
+Make sure you are logged into the Azure portal using the account that is coupled to the subscription you want to use for this lab and run the following command to download the publish settings file. 
+
+    azure account download
+
+If the browser does not start click [this link] to download it manually.
+Run the statement below to get access to your Azure subscription.
+
+    azure account import [path to .publishsettings file]
+    
+List available Ubuntu images by running:
+
     azure vm image list | grep 14_04'
 
 We filter the list so we only see the latest 14.04 versions of the Ubuntu LTS release that are available in azure.
 
-* Copy the image name of the latest daily build, we will this in our next command the base the container host VM on.
-* Enter the command below to create the VM. The 'docker' option instructs Azure to prefit the VM with the Docker components and a docker daemon (background service). -e is the endpoint on port 22, -l is the location 'West Europe' or any region closeby.
+Copy the image name of the latest daily build, we will this in our next command the base the container host VM on.
+
+Enter the command below to create the VM. The 'docker' option instructs Azure to prefit the VM with the Docker components and a docker daemon (background service). -e is the endpoint on port 22, -l is the location 'West Europe' or any region closeby.
+
     azure vm docker create -e 22 -l 'West Europe' vmhostname 'vmimagename'
 
 After a couple of minutes, we have our host VM running,a storage account for the host VM VHD file, and the certificates for running the Daemon and have it listen to port 4243.
