@@ -4,7 +4,8 @@ Calling a REST API, running in a Docker container on Azure, directly from Tessel
 
 Containers are run from Docker images (just like a VM has as a source image file). You can write setup files called Dockerfiles that instruct Docker which steps and commands it should run to build up the image.
 
-Why care about Containers and Docker? Docker makes it very simple to setup environments and make efficient use of the resource a VM has to offer. Once you have a host VM running you can run any number of containers on it that can startup very fast (think sub-second!).
+###Why care about Containers and Docker? 
+Docker makes it very simple to setup environments and make efficient use of the resource a VM has to offer. Once you have a host VM running you can run any number of containers on it that can startup very fast (think sub-second!).
 
 Why would I want to run my host VM on Azure?
 With Microsoft Azure you get a robust platform that let's you (auto)scale you deployments to any size you need with first class tooling (like Powershell, Puppet, Chef, DSC etc.) and high availability features build right in for both storage and compute. With Azure you also setup for a 99,95% SLA.
@@ -16,9 +17,10 @@ So the three selling point for Docker are:
 
 Microsoft Azure has full blown support for Linux VM's and therefore is an excellent environment to host containers. We have built-in support for docker in our cross platform command line tools so setting up Docker hosts on Azure is very easy.
 
-In this lab we will go through the proces of running a Docker client Linux VM in Azure (or you can use your local Linux environment if have have one already) and provisioning Docker host VM's in which we will run Docker containers. In one of these containers we will run the REST API service created in the 'Websites' lab.
+----------------
+### What's in this lab?
 
-	some line of code
+In this lab we will go through the proces of running a Docker client Linux VM in Azure (or you can use your local Linux environment if have have one already) and provisioning Docker host VM's in which we will run Docker containers. In one of these containers we will run the REST API service created in the 'Websites' lab and connect to it from our Tessel.
 
 Prerequisites
 -------------
@@ -70,8 +72,11 @@ This last command downloads a standard ubuntu image from the public Docker hub a
 
 ### Optional: Using the Azure CLI tools from a Linux VM
 * We can use this Linux VM, instead of our local machine. To use this approach we can create an organizational account in Azure Active Directory and use that to login as an Azure co-admin.
-* Use the next command to install the Azure CLI on the VM.
+
+Use the next command to install the Azure CLI on the VM.
+
     sudo npm install -g azure-cli
+
 * Confirm correct installation using the 'azure' command. 
 * Login with 'azure login [USERNAME] [PASSWORD]'.
 * Use the Linux VM terminal to run the Azure CLI commands mentioned during the rest of the lab.
@@ -79,7 +84,7 @@ This last command downloads a standard ubuntu image from the public Docker hub a
 ### Provision a container host in Azure
 Now we have the client tools up and running we want to provision a VM that will act as our Container host. You could also run the Containers locally ofcourse, but in this lab we want to leverage the power of Azure to handle that task on potentialy huge numbers of VMs ranging from small to mega ships of containers, that's where Docker got its name from. To prevent us from having to use the web portal for provisioning virtual machines we use the Azure Cross-Platform Command-Line Interface to handle this from a single command.
 
-* Check the installation of the x-plat CLI tools by running 'azure' in the client console.
+* Check the installation of the Azure CLI tools by running 'azure' in the client console.
 
 Make sure you are logged into the Azure portal using the account that is coupled to the subscription you want to use for this lab and run the following command to download the publish settings file. 
 
@@ -102,50 +107,68 @@ Enter the command below to create the VM. The 'docker' option instructs Azure to
 
     azure vm docker create -e 22 -l 'West Europe' vmhostname 'vmimagename'
 
-After a couple of minutes, we have our host VM running,a storage account for the host VM VHD file, and the certificates for running the Daemon and have it listen to port 4243.
+After a couple of minutes, we have our host VM running, a storage account for the host VM VHD file, and the certificates for running the Daemon (background service) and have it listen to port 4243.
 
 #### Building & running a container image 
-* Make sure the host VM is available by visiting the [Azure portal] portal.azure.com and klik the browse button to go to the list of running VM. Select the VM with the hostname we used in the 'azure vm docker create' command. Also note both endpoints created from the command and the CLI tools and the Docker extension.
-* To make our container available outside of the host we need to add another endpoint. Enter 'azure vm endpoint create -n "HTTP" "[vmhostname]" 80 80' to add the endpoint for HTTP traffic through TCP port 80. You can check the portal website to confirm the creating of the endpoint. the -n is just an endpoint name. The options '80 80' refer to the mapping of an internal port (the one openen in the host VM) and external port (the one we can talk to from our Tessel client). The hostname is the DNS name without the '.cloudapp.net' extensions.
-* Check whether our Docker service is running by running 'sudo docker --tls -H tcp://vmhostname.cloudapp.net:4243 info'. --tls lets us run a command on the host VM from the client console/terminal and this works because we already have the necessary certificates setup.
+* Make sure the host VM is available by visiting the [Azure portal] and klik the browse button to go to the list of running VM. Select the VM with the hostname we used in the 'azure vm docker create' command. Also note both endpoints created from the command and the CLI tools and the Docker extension.
+
+To make our container available outside of the host we need to add another endpoint. Enter: 
+
+	azure vm endpoint create -n "HTTP" "[vmhostname]" 80 80 
+
+This adds the endpoint for HTTP traffic through TCP port 80. You can check the portal website to confirm the creating of the endpoint. the -n is just an endpoint name. The options '80 80' refer to the mapping of an internal port (the one openen in the host VM) and external port (the one we can talk to from our Tessel client). The hostname is the DNS name without the '.cloudapp.net' extensions.
+
+* Check whether our Docker service is running by running:
+
+	sudo docker --tls -H tcp://vmhostname.cloudapp.net:4243 info 
+
+The --tls parameter lets us run a command on the host VM from the client console/terminal and this works because we already have the necessary certificates setup.
 
 We could use the tls command also to setup an image for our container on but a better approach would be to define a Dockerfile and let Docker manage the creation of the image. The Dockerfile instructs Docker what base image should be used and what command it must execute on top of the base image to create additional layers that ultimately make up the image that has all the parts our app needs to run. In our case this will be Node, NPM (the Node package manager) and our application script files.
 
-* Create the following Dockerfile:
-'''
-# DOCKER-VERSION .....
+Create a file named 'Dockerfile' (we use PICO as our texteditor):
 
-FROM ubuntu:14.04
+	cat > Dockerfile
+	pico Dockerfile
+	
+Paste the following script in the Dockerfile: 
 
-# make sure apt is up to date
-RUN apt-get update
+	# DOCKER-VERSION .....
 
-# install nodejs and npm
-RUN apt-get install -y nodejs npm git git-core
+	FROM ubuntu:14.04
 
-ADD start.sh /tmp/
+	# make sure apt is up to date
+	RUN apt-get update
 
-RUN chmod +x /tmp/start.sh
+	# install nodejs and npm
+	RUN apt-get install -y nodejs npm git git-core
 
-CMD ./tmp/start.sh
-'''
+	ADD start.sh /tmp/
 
-* And add the start.sh script file that we can edit without the need to rebuild the image.
-* Replace the GITREPO tag with the GIT repository URL (https://github.com/[name]/[REPO].git) that contains the REST API code for our Node application.
-'''
-cd /tmp
+	RUN chmod +x /tmp/start.sh
 
-# try to remove the repo if it already exists
-rm -rf [GITREPO]; true
+	CMD ./tmp/start.sh
 
-git clone [GITREPO]
+Add another file called start.sh. This script file can be edited without the need to rebuild the container image.
 
-cd [GITREPO]
+	cat > start.sh
+	pico start.sh
+	
+Insert the following snippet in the start.sh file. Replace the GITREPO tag with the GIT repository URL (https://github.com/[name]/[REPO].git) that contains the REST API code for our Node application.
 
-npm install
+	cd /tmp
 
-node .
-'''
+	# try to remove the repo if it already exists
+	rm -rf [GITREPO]; true
+
+	git clone [GITREPO]
+
+	cd [GITREPO]
+
+	npm install
+
+	node .
+
 
 #### Running the REST API and connecting up the Tessel client
 * Create the Dockerfile
