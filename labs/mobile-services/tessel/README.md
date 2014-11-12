@@ -1,2 +1,0 @@
-Blinky Mobile Services Edition
-==============================
